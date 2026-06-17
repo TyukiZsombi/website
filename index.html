@@ -1,0 +1,650 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01//EN" "http://www.w3.org/TR/html4/strict.dtd">
+<html>
+<head>
+  <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+  <meta http-equiv="Content-Style-Type" content="text/css">
+  <title></title>
+  <meta name="Generator" content="Cocoa HTML Writer">
+  <meta name="CocoaVersion" content="2685.6">
+  <style type="text/css">
+    p.p1 {margin: 0.0px 0.0px 0.0px 0.0px; font: 12.0px Helvetica}
+    p.p2 {margin: 0.0px 0.0px 0.0px 0.0px; font: 12.0px Helvetica; min-height: 14.0px}
+  </style>
+</head>
+<body>
+<p class="p1">&lt;!DOCTYPE html&gt;</p>
+<p class="p1">&lt;html lang="hu" class="scroll-smooth"&gt;</p>
+<p class="p1">&lt;head&gt;</p>
+<p class="p1"><span class="Apple-converted-space">    </span>&lt;meta charset="UTF-8"&gt;</p>
+<p class="p1"><span class="Apple-converted-space">    </span>&lt;meta name="viewport" content="width=device-width, initial-scale=1.0"&gt;</p>
+<p class="p1"><span class="Apple-converted-space">    </span>&lt;title&gt;Invios | Prémium Vizuális Modernizáció&lt;/title&gt;</p>
+<p class="p2"><span class="Apple-converted-space">    </span></p>
+<p class="p1"><span class="Apple-converted-space">    </span>&lt;!-- Google Fonts --&gt;</p>
+<p class="p1"><span class="Apple-converted-space">    </span>&lt;link rel="preconnect" href="https://fonts.googleapis.com"&gt;</p>
+<p class="p1"><span class="Apple-converted-space">    </span>&lt;link rel="preconnect" href="https://fonts.gstatic.com" crossorigin&gt;</p>
+<p class="p1"><span class="Apple-converted-space">    </span>&lt;link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;600&amp;family=Syne:wght@600;700;800&amp;display=swap" rel="stylesheet"&gt;</p>
+<p class="p2"><span class="Apple-converted-space">    </span></p>
+<p class="p1"><span class="Apple-converted-space">    </span>&lt;!-- Tailwind CSS --&gt;</p>
+<p class="p1"><span class="Apple-converted-space">    </span>&lt;script src="https://cdn.tailwindcss.com"&gt;&lt;/script&gt;</p>
+<p class="p1"><span class="Apple-converted-space">    </span>&lt;script&gt;</p>
+<p class="p1"><span class="Apple-converted-space">        </span>tailwind.config = {</p>
+<p class="p1"><span class="Apple-converted-space">            </span>theme: {</p>
+<p class="p1"><span class="Apple-converted-space">                </span>extend: {</p>
+<p class="p1"><span class="Apple-converted-space">                    </span>colors: {</p>
+<p class="p1"><span class="Apple-converted-space">                        </span>peach: '#FFDAB9',</p>
+<p class="p1"><span class="Apple-converted-space">                        </span>coral: '#FF7F50',</p>
+<p class="p1"><span class="Apple-converted-space">                        </span>yellow: '#FFD700',</p>
+<p class="p1"><span class="Apple-converted-space">                        </span>cream: '#FFF9F5',</p>
+<p class="p1"><span class="Apple-converted-space">                        </span>espresso: '#2A1B14',</p>
+<p class="p1"><span class="Apple-converted-space">                        </span>warmgray: '#E8E3DF'</p>
+<p class="p1"><span class="Apple-converted-space">                    </span>},</p>
+<p class="p1"><span class="Apple-converted-space">                    </span>fontFamily: {</p>
+<p class="p1"><span class="Apple-converted-space">                        </span>sans: ['Outfit', 'sans-serif'],</p>
+<p class="p1"><span class="Apple-converted-space">                        </span>display: ['Syne', 'sans-serif'],</p>
+<p class="p1"><span class="Apple-converted-space">                    </span>},</p>
+<p class="p1"><span class="Apple-converted-space">                    </span>boxShadow: {</p>
+<p class="p1"><span class="Apple-converted-space">                        </span>'groovy': '8px 8px 0px 0px rgba(42, 27, 20, 1)',</p>
+<p class="p1"><span class="Apple-converted-space">                        </span>'groovy-hover': '12px 12px 0px 0px rgba(42, 27, 20, 1)',</p>
+<p class="p1"><span class="Apple-converted-space">                    </span>}</p>
+<p class="p1"><span class="Apple-converted-space">                </span>}</p>
+<p class="p1"><span class="Apple-converted-space">            </span>}</p>
+<p class="p1"><span class="Apple-converted-space">        </span>}</p>
+<p class="p1"><span class="Apple-converted-space">    </span>&lt;/script&gt;</p>
+<p class="p2"><br></p>
+<p class="p1"><span class="Apple-converted-space">    </span>&lt;!-- GSAP &amp; Three.js --&gt;</p>
+<p class="p1"><span class="Apple-converted-space">    </span>&lt;script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"&gt;&lt;/script&gt;</p>
+<p class="p1"><span class="Apple-converted-space">    </span>&lt;script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js"&gt;&lt;/script&gt;</p>
+<p class="p1"><span class="Apple-converted-space">    </span>&lt;script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/ScrollTrigger.min.js"&gt;&lt;/script&gt;</p>
+<p class="p2"><br></p>
+<p class="p1"><span class="Apple-converted-space">    </span>&lt;style&gt;</p>
+<p class="p1"><span class="Apple-converted-space">        </span>/* Alap beállítások és egyedi formázások */</p>
+<p class="p1"><span class="Apple-converted-space">        </span>body {</p>
+<p class="p1"><span class="Apple-converted-space">            </span>background-color: #FFF9F5;</p>
+<p class="p1"><span class="Apple-converted-space">            </span>color: #2A1B14;</p>
+<p class="p1"><span class="Apple-converted-space">            </span>overflow-x: hidden;</p>
+<p class="p1"><span class="Apple-converted-space">            </span>cursor: none; /* Egyedi kurzort használunk */</p>
+<p class="p1"><span class="Apple-converted-space">        </span>}</p>
+<p class="p2"><br></p>
+<p class="p1"><span class="Apple-converted-space">        </span>/* Dithering Zajos Overlay */</p>
+<p class="p1"><span class="Apple-converted-space">        </span>.noise-overlay {</p>
+<p class="p1"><span class="Apple-converted-space">            </span>position: fixed;</p>
+<p class="p1"><span class="Apple-converted-space">            </span>top: 0;</p>
+<p class="p1"><span class="Apple-converted-space">            </span>left: 0;</p>
+<p class="p1"><span class="Apple-converted-space">            </span>width: 100vw;</p>
+<p class="p1"><span class="Apple-converted-space">            </span>height: 100vh;</p>
+<p class="p1"><span class="Apple-converted-space">            </span>pointer-events: none;</p>
+<p class="p1"><span class="Apple-converted-space">            </span>z-index: 9999;</p>
+<p class="p1"><span class="Apple-converted-space">            </span>opacity: 0.35;</p>
+<p class="p1"><span class="Apple-converted-space">            </span>mix-blend-mode: overlay;</p>
+<p class="p1"><span class="Apple-converted-space">            </span>background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noiseFilter'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.8' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noiseFilter)'/%3E%3C/svg%3E");</p>
+<p class="p1"><span class="Apple-converted-space">        </span>}</p>
+<p class="p2"><br></p>
+<p class="p1"><span class="Apple-converted-space">        </span>/* Egyedi kurzor */</p>
+<p class="p1"><span class="Apple-converted-space">        </span>#custom-cursor {</p>
+<p class="p1"><span class="Apple-converted-space">            </span>position: fixed;</p>
+<p class="p1"><span class="Apple-converted-space">            </span>top: 0;</p>
+<p class="p1"><span class="Apple-converted-space">            </span>left: 0;</p>
+<p class="p1"><span class="Apple-converted-space">            </span>width: 20px;</p>
+<p class="p1"><span class="Apple-converted-space">            </span>height: 20px;</p>
+<p class="p1"><span class="Apple-converted-space">            </span>background-color: #FF7F50;</p>
+<p class="p1"><span class="Apple-converted-space">            </span>border-radius: 50%;</p>
+<p class="p1"><span class="Apple-converted-space">            </span>pointer-events: none;</p>
+<p class="p1"><span class="Apple-converted-space">            </span>z-index: 10000;</p>
+<p class="p1"><span class="Apple-converted-space">            </span>transform: translate(-50%, -50%);</p>
+<p class="p1"><span class="Apple-converted-space">            </span>transition: width 0.3s, height 0.3s, background-color 0.3s;</p>
+<p class="p1"><span class="Apple-converted-space">            </span>mix-blend-mode: difference;</p>
+<p class="p1"><span class="Apple-converted-space">        </span>}</p>
+<p class="p2"><span class="Apple-converted-space">        </span></p>
+<p class="p1"><span class="Apple-converted-space">        </span>.hover-active #custom-cursor {</p>
+<p class="p1"><span class="Apple-converted-space">            </span>width: 60px;</p>
+<p class="p1"><span class="Apple-converted-space">            </span>height: 60px;</p>
+<p class="p1"><span class="Apple-converted-space">            </span>background-color: #FFD700;</p>
+<p class="p1"><span class="Apple-converted-space">        </span>}</p>
+<p class="p2"><br></p>
+<p class="p1"><span class="Apple-converted-space">        </span>/* Meleg Gradiens Hátterek és Animációk */</p>
+<p class="p1"><span class="Apple-converted-space">        </span>.warm-gradient-bg {</p>
+<p class="p1"><span class="Apple-converted-space">            </span>background: linear-gradient(120deg, #FFDAB9, #FFF9F5, #FFD700, #FF7F50);</p>
+<p class="p1"><span class="Apple-converted-space">            </span>background-size: 300% 300%;</p>
+<p class="p1"><span class="Apple-converted-space">            </span>animation: gradientMove 12s ease infinite;</p>
+<p class="p1"><span class="Apple-converted-space">        </span>}</p>
+<p class="p2"><br></p>
+<p class="p1"><span class="Apple-converted-space">        </span>@keyframes gradientMove {</p>
+<p class="p1"><span class="Apple-converted-space">            </span>0% { background-position: 0% 50%; }</p>
+<p class="p1"><span class="Apple-converted-space">            </span>50% { background-position: 100% 50%; }</p>
+<p class="p1"><span class="Apple-converted-space">            </span>100% { background-position: 0% 50%; }</p>
+<p class="p1"><span class="Apple-converted-space">        </span>}</p>
+<p class="p2"><br></p>
+<p class="p1"><span class="Apple-converted-space">        </span>/* Hullámos formák (Wavy shapes) */</p>
+<p class="p1"><span class="Apple-converted-space">        </span>.blob-shape {</p>
+<p class="p1"><span class="Apple-converted-space">            </span>border-radius: 40% 60% 70% 30% / 40% 50% 60% 50%;</p>
+<p class="p1"><span class="Apple-converted-space">            </span>animation: morph 8s ease-in-out infinite both alternate;</p>
+<p class="p1"><span class="Apple-converted-space">        </span>}</p>
+<p class="p2"><br></p>
+<p class="p1"><span class="Apple-converted-space">        </span>@keyframes morph {</p>
+<p class="p1"><span class="Apple-converted-space">            </span>0% { border-radius: 40% 60% 70% 30% / 40% 50% 60% 50%; }</p>
+<p class="p1"><span class="Apple-converted-space">            </span>100% { border-radius: 60% 40% 30% 70% / 60% 30% 70% 40%; }</p>
+<p class="p1"><span class="Apple-converted-space">        </span>}</p>
+<p class="p2"><br></p>
+<p class="p1"><span class="Apple-converted-space">        </span>/* Marquee animáció */</p>
+<p class="p1"><span class="Apple-converted-space">        </span>.marquee-container {</p>
+<p class="p1"><span class="Apple-converted-space">            </span>overflow: hidden;</p>
+<p class="p1"><span class="Apple-converted-space">            </span>white-space: nowrap;</p>
+<p class="p1"><span class="Apple-converted-space">            </span>position: relative;</p>
+<p class="p1"><span class="Apple-converted-space">        </span>}</p>
+<p class="p1"><span class="Apple-converted-space">        </span>.marquee-content {</p>
+<p class="p1"><span class="Apple-converted-space">            </span>display: inline-block;</p>
+<p class="p1"><span class="Apple-converted-space">            </span>animation: marquee 20s linear infinite;</p>
+<p class="p1"><span class="Apple-converted-space">        </span>}</p>
+<p class="p1"><span class="Apple-converted-space">        </span>@keyframes marquee {</p>
+<p class="p1"><span class="Apple-converted-space">            </span>0% { transform: translateX(0); }</p>
+<p class="p1"><span class="Apple-converted-space">            </span>100% { transform: translateX(-50%); }</p>
+<p class="p1"><span class="Apple-converted-space">        </span>}</p>
+<p class="p2"><br></p>
+<p class="p1"><span class="Apple-converted-space">        </span>/* WebGL Canvas Container */</p>
+<p class="p1"><span class="Apple-converted-space">        </span>#shader-container {</p>
+<p class="p1"><span class="Apple-converted-space">            </span>position: absolute;</p>
+<p class="p1"><span class="Apple-converted-space">            </span>top: 0;</p>
+<p class="p1"><span class="Apple-converted-space">            </span>left: 0;</p>
+<p class="p1"><span class="Apple-converted-space">            </span>width: 100%;</p>
+<p class="p1"><span class="Apple-converted-space">            </span>height: 100%;</p>
+<p class="p1"><span class="Apple-converted-space">            </span>z-index: 10;</p>
+<p class="p1"><span class="Apple-converted-space">            </span>pointer-events: none; /* Események átengedése */</p>
+<p class="p1"><span class="Apple-converted-space">        </span>}</p>
+<p class="p2"><span class="Apple-converted-space">        </span></p>
+<p class="p1"><span class="Apple-converted-space">        </span>/* Glassmorphism kártyák maximalista stílusban */</p>
+<p class="p1"><span class="Apple-converted-space">        </span>.glass-groovy-card {</p>
+<p class="p1"><span class="Apple-converted-space">            </span>background: rgba(255, 249, 245, 0.6);</p>
+<p class="p1"><span class="Apple-converted-space">            </span>backdrop-filter: blur(12px);</p>
+<p class="p1"><span class="Apple-converted-space">            </span>border: 2px solid #2A1B14;</p>
+<p class="p1"><span class="Apple-converted-space">            </span>border-radius: 2rem;</p>
+<p class="p1"><span class="Apple-converted-space">            </span>transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);</p>
+<p class="p1"><span class="Apple-converted-space">        </span>}</p>
+<p class="p2"><span class="Apple-converted-space">        </span></p>
+<p class="p1"><span class="Apple-converted-space">        </span>.glass-groovy-card:hover {</p>
+<p class="p1"><span class="Apple-converted-space">            </span>transform: translateY(-10px) rotate(-1deg);</p>
+<p class="p1"><span class="Apple-converted-space">            </span>box-shadow: 12px 12px 0px 0px rgba(42, 27, 20, 1);</p>
+<p class="p1"><span class="Apple-converted-space">            </span>background: #FFDAB9;</p>
+<p class="p1"><span class="Apple-converted-space">        </span>}</p>
+<p class="p2"><br></p>
+<p class="p1"><span class="Apple-converted-space">        </span>/* Töréspontokra optimalizált tipográfia (sosem lóg ki) */</p>
+<p class="p1"><span class="Apple-converted-space">        </span>.responsive-slogan {</p>
+<p class="p1"><span class="Apple-converted-space">            </span>font-size: clamp(1.5rem, 4vw, 3.5rem);</p>
+<p class="p1"><span class="Apple-converted-space">            </span>line-height: 1.1;</p>
+<p class="p1"><span class="Apple-converted-space">        </span>}</p>
+<p class="p1"><span class="Apple-converted-space">    </span>&lt;/style&gt;</p>
+<p class="p1">&lt;/head&gt;</p>
+<p class="p1">&lt;body class="antialiased selection:bg-coral selection:text-cream"&gt;</p>
+<p class="p2"><br></p>
+<p class="p1"><span class="Apple-converted-space">    </span>&lt;!-- Globális effektek --&gt;</p>
+<p class="p1"><span class="Apple-converted-space">    </span>&lt;div class="noise-overlay"&gt;&lt;/div&gt;</p>
+<p class="p1"><span class="Apple-converted-space">    </span>&lt;div id="custom-cursor"&gt;&lt;/div&gt;</p>
+<p class="p2"><br></p>
+<p class="p1"><span class="Apple-converted-space">    </span>&lt;!-- Navigáció --&gt;</p>
+<p class="p1"><span class="Apple-converted-space">    </span>&lt;nav class="fixed top-0 w-full z-50 px-6 py-4 flex justify-between items-center mix-blend-difference text-cream"&gt;</p>
+<p class="p1"><span class="Apple-converted-space">        </span>&lt;div class="font-display font-bold text-2xl tracking-tighter uppercase"&gt;Invios&lt;/div&gt;</p>
+<p class="p1"><span class="Apple-converted-space">        </span>&lt;div class="hidden md:flex space-x-8 font-sans font-semibold text-sm"&gt;</p>
+<p class="p1"><span class="Apple-converted-space">            </span>&lt;a href="#about" class="hoverable hover:text-coral transition-colors"&gt;Rólunk&lt;/a&gt;</p>
+<p class="p1"><span class="Apple-converted-space">            </span>&lt;a href="#services" class="hoverable hover:text-coral transition-colors"&gt;Szolgáltatások&lt;/a&gt;</p>
+<p class="p1"><span class="Apple-converted-space">            </span>&lt;a href="#process" class="hoverable hover:text-coral transition-colors"&gt;Folyamat&lt;/a&gt;</p>
+<p class="p1"><span class="Apple-converted-space">            </span>&lt;a href="#contact" class="hoverable bg-cream text-espresso px-5 py-2 rounded-full hover:bg-coral hover:text-cream transition-all"&gt;Kezdjük el&lt;/a&gt;</p>
+<p class="p1"><span class="Apple-converted-space">        </span>&lt;/div&gt;</p>
+<p class="p1"><span class="Apple-converted-space">    </span>&lt;/nav&gt;</p>
+<p class="p2"><br></p>
+<p class="p1"><span class="Apple-converted-space">    </span>&lt;!-- 1. SZEKCIÓ: HERO (Shader + Szöveg) --&gt;</p>
+<p class="p1"><span class="Apple-converted-space">    </span>&lt;section class="relative w-full h-screen flex flex-col justify-center items-center overflow-hidden warm-gradient-bg"&gt;</p>
+<p class="p1"><span class="Apple-converted-space">        </span>&lt;!-- WebGL text renderer container --&gt;</p>
+<p class="p1"><span class="Apple-converted-space">        </span>&lt;div id="shader-container"&gt;&lt;/div&gt;</p>
+<p class="p2"><span class="Apple-converted-space">        </span></p>
+<p class="p1"><span class="Apple-converted-space">        </span>&lt;!-- Slogan, ami rálóg a shaderre, de alatta van a hierarchiában --&gt;</p>
+<p class="p1"><span class="Apple-converted-space">        </span>&lt;div class="absolute bottom-10 md:bottom-20 px-6 text-center z-20 w-full max-w-5xl mx-auto flex flex-col items-center"&gt;</p>
+<p class="p1"><span class="Apple-converted-space">            </span>&lt;p class="font-display font-bold text-espresso responsive-slogan max-w-4xl text-balance drop-shadow-md"&gt;</p>
+<p class="p1"><span class="Apple-converted-space">                </span>A vállalkozásod megérdemli, hogy úgy nézzen ki, amilyen valójában.</p>
+<p class="p1"><span class="Apple-converted-space">            </span>&lt;/p&gt;</p>
+<p class="p1"><span class="Apple-converted-space">            </span>&lt;div class="mt-6 flex gap-4"&gt;</p>
+<p class="p1"><span class="Apple-converted-space">                </span>&lt;a href="#contact" class="hoverable bg-espresso text-cream px-8 py-4 rounded-full font-bold text-lg shadow-groovy hover:shadow-groovy-hover hover:-translate-y-1 transition-all"&gt;</p>
+<p class="p1"><span class="Apple-converted-space">                    </span>Ingyenes konzultáció</p>
+<p class="p1"><span class="Apple-converted-space">                </span>&lt;/a&gt;</p>
+<p class="p1"><span class="Apple-converted-space">            </span>&lt;/div&gt;</p>
+<p class="p1"><span class="Apple-converted-space">        </span>&lt;/div&gt;</p>
+<p class="p2"><br></p>
+<p class="p1"><span class="Apple-converted-space">        </span>&lt;!-- Scroll indikátor --&gt;</p>
+<p class="p1"><span class="Apple-converted-space">        </span>&lt;div class="absolute bottom-6 left-1/2 -translate-x-1/2 z-20 animate-bounce"&gt;</p>
+<p class="p1"><span class="Apple-converted-space">            </span>&lt;svg class="w-6 h-6 text-espresso" fill="none" stroke="currentColor" viewBox="0 0 24 24"&gt;</p>
+<p class="p1"><span class="Apple-converted-space">                </span>&lt;path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 14l-7 7m0 0l-7-7m7 7V3"&gt;&lt;/path&gt;</p>
+<p class="p1"><span class="Apple-converted-space">            </span>&lt;/svg&gt;</p>
+<p class="p1"><span class="Apple-converted-space">        </span>&lt;/div&gt;</p>
+<p class="p1"><span class="Apple-converted-space">    </span>&lt;/section&gt;</p>
+<p class="p2"><br></p>
+<p class="p1"><span class="Apple-converted-space">    </span>&lt;!-- 2. SZEKCIÓ: RÓLUNK --&gt;</p>
+<p class="p1"><span class="Apple-converted-space">    </span>&lt;section id="about" class="py-32 px-6 md:px-12 lg:px-24 bg-cream relative z-20 rounded-t-[3rem] -mt-10"&gt;</p>
+<p class="p1"><span class="Apple-converted-space">        </span>&lt;div class="max-w-7xl mx-auto grid grid-cols-1 md:grid-cols-2 gap-16 items-center"&gt;</p>
+<p class="p1"><span class="Apple-converted-space">            </span>&lt;div class="space-y-8 animate-on-scroll"&gt;</p>
+<p class="p1"><span class="Apple-converted-space">                </span>&lt;h2 class="font-display font-bold text-5xl md:text-7xl text-espresso leading-none"&gt;</p>
+<p class="p1"><span class="Apple-converted-space">                    </span>Több, mint &lt;span class="text-coral"&gt;esztétika.&lt;/span&gt; Hitelesség.</p>
+<p class="p1"><span class="Apple-converted-space">                </span>&lt;/h2&gt;</p>
+<p class="p1"><span class="Apple-converted-space">                </span>&lt;p class="text-xl md:text-2xl text-espresso/80 font-light leading-relaxed"&gt;</p>
+<p class="p1"><span class="Apple-converted-space">                    </span>Sok fantasztikus kisvállalkozás veszíti el az ügyfeleit csupán azért, mert a vizuális megjelenésük nem tükrözi a szolgáltatásuk valódi minőségét.</p>
+<p class="p1"><span class="Apple-converted-space">                </span>&lt;/p&gt;</p>
+<p class="p1"><span class="Apple-converted-space">                </span>&lt;p class="text-lg text-espresso/70 leading-relaxed"&gt;</p>
+<p class="p1"><span class="Apple-converted-space">                    </span>Az Invios azért jött létre, hogy áthidalja ezt a szakadékot. Nem csak logókat rajzolunk – meleg, emberközeli és profi arculatokat építünk, amelyek vonzzák a tekintetet és bizalmat ébresztenek.</p>
+<p class="p1"><span class="Apple-converted-space">                </span>&lt;/p&gt;</p>
+<p class="p1"><span class="Apple-converted-space">            </span>&lt;/div&gt;</p>
+<p class="p1"><span class="Apple-converted-space">            </span>&lt;div class="relative h-[500px] w-full animate-on-scroll"&gt;</p>
+<p class="p1"><span class="Apple-converted-space">                </span>&lt;div class="absolute inset-0 bg-coral blob-shape opacity-80 mix-blend-multiply"&gt;&lt;/div&gt;</p>
+<p class="p1"><span class="Apple-converted-space">                </span>&lt;div class="absolute inset-4 bg-yellow blob-shape opacity-60 mix-blend-multiply" style="animation-delay: -2s;"&gt;&lt;/div&gt;</p>
+<p class="p1"><span class="Apple-converted-space">                </span>&lt;div class="absolute inset-8 bg-peach blob-shape shadow-groovy flex items-center justify-center overflow-hidden border-4 border-espresso"&gt;</p>
+<p class="p1"><span class="Apple-converted-space">                    </span>&lt;!-- Kép helykitöltő --&gt;</p>
+<p class="p1"><span class="Apple-converted-space">                    </span>&lt;img src="https://images.unsplash.com/photo-1542744173-8e7e53415bb0?ixlib=rb-4.0.3&amp;auto=format&amp;fit=crop&amp;w=1000&amp;q=80" alt="Csapatmunka" class="w-full h-full object-cover opacity-80 mix-blend-luminosity hover:mix-blend-normal transition-all duration-700"&gt;</p>
+<p class="p1"><span class="Apple-converted-space">                </span>&lt;/div&gt;</p>
+<p class="p1"><span class="Apple-converted-space">            </span>&lt;/div&gt;</p>
+<p class="p1"><span class="Apple-converted-space">        </span>&lt;/div&gt;</p>
+<p class="p1"><span class="Apple-converted-space">    </span>&lt;/section&gt;</p>
+<p class="p2"><br></p>
+<p class="p1"><span class="Apple-converted-space">    </span>&lt;!-- Marquee Elválasztó --&gt;</p>
+<p class="p1"><span class="Apple-converted-space">    </span>&lt;div class="bg-espresso text-peach py-6 marquee-container border-y-4 border-espresso transform -rotate-1 scale-105 z-30 relative shadow-xl"&gt;</p>
+<p class="p1"><span class="Apple-converted-space">        </span>&lt;div class="marquee-content font-display font-bold text-4xl uppercase tracking-widest"&gt;</p>
+<p class="p1"><span class="Apple-converted-space">            </span>LOGÓ TERVEZÉS • SZÍNPALETTA • TIPOGRÁFIA • BRAND GUIDE • SOCIAL MEDIA • VIZUÁLIS MODERNIZÁCIÓ • LOGÓ TERVEZÉS • SZÍNPALETTA • TIPOGRÁFIA • BRAND GUIDE • SOCIAL MEDIA • VIZUÁLIS MODERNIZÁCIÓ •</p>
+<p class="p1"><span class="Apple-converted-space">        </span>&lt;/div&gt;</p>
+<p class="p1"><span class="Apple-converted-space">    </span>&lt;/div&gt;</p>
+<p class="p2"><br></p>
+<p class="p1"><span class="Apple-converted-space">    </span>&lt;!-- 3. SZEKCIÓ: SZOLGÁLTATÁSOK --&gt;</p>
+<p class="p1"><span class="Apple-converted-space">    </span>&lt;section id="services" class="py-32 px-6 md:px-12 lg:px-24 bg-warmgray relative z-20"&gt;</p>
+<p class="p1"><span class="Apple-converted-space">        </span>&lt;div class="max-w-7xl mx-auto"&gt;</p>
+<p class="p1"><span class="Apple-converted-space">            </span>&lt;div class="text-center mb-20 animate-on-scroll"&gt;</p>
+<p class="p1"><span class="Apple-converted-space">                </span>&lt;h2 class="font-display font-bold text-6xl md:text-8xl text-espresso mb-6"&gt;Miben segítünk?&lt;/h2&gt;</p>
+<p class="p1"><span class="Apple-converted-space">                </span>&lt;p class="text-2xl text-espresso/70 max-w-2xl mx-auto"&gt;Minden, amire szükséged van egy egységes, figyelemfelkeltő online jelenléthez.&lt;/p&gt;</p>
+<p class="p1"><span class="Apple-converted-space">            </span>&lt;/div&gt;</p>
+<p class="p2"><br></p>
+<p class="p1"><span class="Apple-converted-space">            </span>&lt;div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8"&gt;</p>
+<p class="p1"><span class="Apple-converted-space">                </span>&lt;!-- Kártya 1 --&gt;</p>
+<p class="p1"><span class="Apple-converted-space">                </span>&lt;div class="glass-groovy-card p-10 hoverable animate-on-scroll"&gt;</p>
+<p class="p1"><span class="Apple-converted-space">                    </span>&lt;div class="w-16 h-16 rounded-full bg-coral mb-6 flex items-center justify-center border-2 border-espresso"&gt;</p>
+<p class="p1"><span class="Apple-converted-space">                        </span>&lt;svg class="w-8 h-8 text-espresso" fill="none" stroke="currentColor" viewBox="0 0 24 24"&gt;&lt;path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M7 21a4 4 0 01-4-4V5a2 2 0 012-2h4a2 2 0 012 2v12a4 4 0 01-4 4zm0 0h12a2 2 0 002-2v-4a2 2 0 00-2-2h-2.343M11 7.343l1.657-1.657a2 2 0 012.828 0l2.829 2.829a2 2 0 010 2.828l-8.486 8.485M7 17h.01"&gt;&lt;/path&gt;&lt;/svg&gt;</p>
+<p class="p1"><span class="Apple-converted-space">                    </span>&lt;/div&gt;</p>
+<p class="p1"><span class="Apple-converted-space">                    </span>&lt;h3 class="font-display font-bold text-3xl mb-4 text-espresso"&gt;Logó &amp; Identitás&lt;/h3&gt;</p>
+<p class="p1"><span class="Apple-converted-space">                    </span>&lt;p class="text-espresso/80"&gt;Egyedi, emlékezetes logók, amelyek kiemelik a márkádat a tömegből, meleg és modern köntösben.&lt;/p&gt;</p>
+<p class="p1"><span class="Apple-converted-space">                </span>&lt;/div&gt;</p>
+<p class="p1"><span class="Apple-converted-space">                </span>&lt;!-- Kártya 2 --&gt;</p>
+<p class="p1"><span class="Apple-converted-space">                </span>&lt;div class="glass-groovy-card p-10 hoverable animate-on-scroll"&gt;</p>
+<p class="p1"><span class="Apple-converted-space">                    </span>&lt;div class="w-16 h-16 rounded-full bg-yellow mb-6 flex items-center justify-center border-2 border-espresso"&gt;</p>
+<p class="p1"><span class="Apple-converted-space">                        </span>&lt;svg class="w-8 h-8 text-espresso" fill="none" stroke="currentColor" viewBox="0 0 24 24"&gt;&lt;path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 16l4.586-4.586a2 2 0 012.828 0L16 16m-2-2l1.586-1.586a2 2 0 012.828 0L20 14m-6-6h.01M6 20h12a2 2 0 002-2V6a2 2 0 00-2-2H6a2 2 0 00-2 2v12a2 2 0 002 2z"&gt;&lt;/path&gt;&lt;/svg&gt;</p>
+<p class="p1"><span class="Apple-converted-space">                    </span>&lt;/div&gt;</p>
+<p class="p1"><span class="Apple-converted-space">                    </span>&lt;h3 class="font-display font-bold text-3xl mb-4 text-espresso"&gt;Színek &amp; Betűk&lt;/h3&gt;</p>
+<p class="p1"><span class="Apple-converted-space">                    </span>&lt;p class="text-espresso/80"&gt;Gondosan összeállított színpaletták és tipográfiai rendszerek, amelyek pszichológiailag is hatnak a célközönségre.&lt;/p&gt;</p>
+<p class="p1"><span class="Apple-converted-space">                </span>&lt;/div&gt;</p>
+<p class="p1"><span class="Apple-converted-space">                </span>&lt;!-- Kártya 3 --&gt;</p>
+<p class="p1"><span class="Apple-converted-space">                </span>&lt;div class="glass-groovy-card p-10 hoverable animate-on-scroll"&gt;</p>
+<p class="p1"><span class="Apple-converted-space">                    </span>&lt;div class="w-16 h-16 rounded-full bg-peach mb-6 flex items-center justify-center border-2 border-espresso"&gt;</p>
+<p class="p1"><span class="Apple-converted-space">                        </span>&lt;svg class="w-8 h-8 text-espresso" fill="none" stroke="currentColor" viewBox="0 0 24 24"&gt;&lt;path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 18h.01M8 21h8a2 2 0 002-2V5a2 2 0 00-2-2H8a2 2 0 00-2 2v14a2 2 0 002 2z"&gt;&lt;/path&gt;&lt;/svg&gt;</p>
+<p class="p1"><span class="Apple-converted-space">                    </span>&lt;/div&gt;</p>
+<p class="p1"><span class="Apple-converted-space">                    </span>&lt;h3 class="font-display font-bold text-3xl mb-4 text-espresso"&gt;Social Media&lt;/h3&gt;</p>
+<p class="p1"><span class="Apple-converted-space">                    </span>&lt;p class="text-espresso/80"&gt;Könnyen használható, figyelemfelkeltő sablonok Instagramra, Facebookra, hogy a kommunikációd vizuálisan is üssön.&lt;/p&gt;</p>
+<p class="p1"><span class="Apple-converted-space">                </span>&lt;/div&gt;</p>
+<p class="p1"><span class="Apple-converted-space">                </span>&lt;!-- Kártya 4 --&gt;</p>
+<p class="p1"><span class="Apple-converted-space">                </span>&lt;div class="glass-groovy-card p-10 lg:col-span-3 hoverable animate-on-scroll bg-gradient-to-r from-peach to-yellow"&gt;</p>
+<p class="p1"><span class="Apple-converted-space">                    </span>&lt;div class="flex flex-col md:flex-row items-center gap-8"&gt;</p>
+<p class="p1"><span class="Apple-converted-space">                        </span>&lt;div class="flex-1"&gt;</p>
+<p class="p1"><span class="Apple-converted-space">                            </span>&lt;h3 class="font-display font-bold text-4xl mb-4 text-espresso"&gt;Teljes Brand Style Guide&lt;/h3&gt;</p>
+<p class="p1"><span class="Apple-converted-space">                            </span>&lt;p class="text-xl text-espresso/80 mb-6"&gt;A "szent grál" a vállalkozásodhoz. Egy átfogó dokumentum, ami lefekteti a márkád vizuális szabályait, így a jövőben bárki (webfejlesztő, nyomda, marketinges) tökéletesen tudja majd használni az arculatodat.&lt;/p&gt;</p>
+<p class="p1"><span class="Apple-converted-space">                        </span>&lt;/div&gt;</p>
+<p class="p1"><span class="Apple-converted-space">                        </span>&lt;div class="w-32 h-32 flex-shrink-0 bg-espresso text-cream rounded-full flex items-center justify-center font-display font-bold text-2xl transform rotate-12 shadow-xl border-4 border-white"&gt;</p>
+<p class="p1"><span class="Apple-converted-space">                            </span>PRO Csomag</p>
+<p class="p1"><span class="Apple-converted-space">                        </span>&lt;/div&gt;</p>
+<p class="p1"><span class="Apple-converted-space">                    </span>&lt;/div&gt;</p>
+<p class="p1"><span class="Apple-converted-space">                </span>&lt;/div&gt;</p>
+<p class="p1"><span class="Apple-converted-space">            </span>&lt;/div&gt;</p>
+<p class="p1"><span class="Apple-converted-space">        </span>&lt;/div&gt;</p>
+<p class="p1"><span class="Apple-converted-space">    </span>&lt;/section&gt;</p>
+<p class="p2"><br></p>
+<p class="p1"><span class="Apple-converted-space">    </span>&lt;!-- 4. SZEKCIÓ: FOLYAMAT (Hogyan dolgozunk) --&gt;</p>
+<p class="p1"><span class="Apple-converted-space">    </span>&lt;section id="process" class="py-32 px-6 md:px-12 lg:px-24 bg-cream relative z-20"&gt;</p>
+<p class="p1"><span class="Apple-converted-space">        </span>&lt;div class="max-w-5xl mx-auto"&gt;</p>
+<p class="p1"><span class="Apple-converted-space">            </span>&lt;h2 class="font-display font-bold text-5xl md:text-7xl text-espresso text-center mb-24 animate-on-scroll"&gt;A Megújulás Útja&lt;/h2&gt;</p>
+<p class="p2"><span class="Apple-converted-space">            </span></p>
+<p class="p1"><span class="Apple-converted-space">            </span>&lt;div class="relative"&gt;</p>
+<p class="p1"><span class="Apple-converted-space">                </span>&lt;!-- Hullámos összekötő vonal (csak asztalon látszik jól) --&gt;</p>
+<p class="p1"><span class="Apple-converted-space">                </span>&lt;div class="hidden md:block absolute left-[50%] top-0 bottom-0 w-1 bg-coral opacity-30 transform -translate-x-1/2"&gt;&lt;/div&gt;</p>
+<p class="p2"><span class="Apple-converted-space">                </span></p>
+<p class="p1"><span class="Apple-converted-space">                </span>&lt;div class="space-y-24"&gt;</p>
+<p class="p1"><span class="Apple-converted-space">                    </span>&lt;!-- Lépés 1 --&gt;</p>
+<p class="p1"><span class="Apple-converted-space">                    </span>&lt;div class="relative flex flex-col md:flex-row items-center justify-between gap-8 animate-on-scroll"&gt;</p>
+<p class="p1"><span class="Apple-converted-space">                        </span>&lt;div class="md:w-5/12 text-right order-2 md:order-1"&gt;</p>
+<p class="p1"><span class="Apple-converted-space">                            </span>&lt;h3 class="font-display font-bold text-3xl text-espresso mb-3"&gt;1. Megismerés&lt;/h3&gt;</p>
+<p class="p1"><span class="Apple-converted-space">                            </span>&lt;p class="text-espresso/70"&gt;Mélyre ásunk. Megbeszéljük a céljaidat, az értékeidet és azt, hogy mit szeretnél sugározni a világnak. Közösen határozzuk meg a vizuális irányt.&lt;/p&gt;</p>
+<p class="p1"><span class="Apple-converted-space">                        </span>&lt;/div&gt;</p>
+<p class="p1"><span class="Apple-converted-space">                        </span>&lt;div class="z-10 w-20 h-20 rounded-full bg-coral flex items-center justify-center font-display font-bold text-3xl text-espresso border-4 border-espresso shadow-groovy order-1 md:order-2"&gt;</p>
+<p class="p1"><span class="Apple-converted-space">                            </span>01</p>
+<p class="p1"><span class="Apple-converted-space">                        </span>&lt;/div&gt;</p>
+<p class="p1"><span class="Apple-converted-space">                        </span>&lt;div class="md:w-5/12 order-3"&gt;&lt;/div&gt;</p>
+<p class="p1"><span class="Apple-converted-space">                    </span>&lt;/div&gt;</p>
+<p class="p2"><span class="Apple-converted-space">                    </span></p>
+<p class="p1"><span class="Apple-converted-space">                    </span>&lt;!-- Lépés 2 --&gt;</p>
+<p class="p1"><span class="Apple-converted-space">                    </span>&lt;div class="relative flex flex-col md:flex-row items-center justify-between gap-8 animate-on-scroll"&gt;</p>
+<p class="p1"><span class="Apple-converted-space">                        </span>&lt;div class="md:w-5/12 order-3 md:order-1"&gt;&lt;/div&gt;</p>
+<p class="p1"><span class="Apple-converted-space">                        </span>&lt;div class="z-10 w-20 h-20 rounded-full bg-yellow flex items-center justify-center font-display font-bold text-3xl text-espresso border-4 border-espresso shadow-groovy order-1 md:order-2"&gt;</p>
+<p class="p1"><span class="Apple-converted-space">                            </span>02</p>
+<p class="p1"><span class="Apple-converted-space">                        </span>&lt;/div&gt;</p>
+<p class="p1"><span class="Apple-converted-space">                        </span>&lt;div class="md:w-5/12 text-left order-2 md:order-3"&gt;</p>
+<p class="p1"><span class="Apple-converted-space">                            </span>&lt;h3 class="font-display font-bold text-3xl text-espresso mb-3"&gt;2. Tervezés &amp; Varázslat&lt;/h3&gt;</p>
+<p class="p1"><span class="Apple-converted-space">                            </span>&lt;p class="text-espresso/70"&gt;Elvonulunk és alkotunk. A maximalista stílusjegyeket és az enterprise minőséget ötvözve létrehozunk 2-3 ütős koncepciót a márkádhoz.&lt;/p&gt;</p>
+<p class="p1"><span class="Apple-converted-space">                        </span>&lt;/div&gt;</p>
+<p class="p1"><span class="Apple-converted-space">                    </span>&lt;/div&gt;</p>
+<p class="p2"><br></p>
+<p class="p1"><span class="Apple-converted-space">                    </span>&lt;!-- Lépés 3 --&gt;</p>
+<p class="p1"><span class="Apple-converted-space">                    </span>&lt;div class="relative flex flex-col md:flex-row items-center justify-between gap-8 animate-on-scroll"&gt;</p>
+<p class="p1"><span class="Apple-converted-space">                        </span>&lt;div class="md:w-5/12 text-right order-2 md:order-1"&gt;</p>
+<p class="p1"><span class="Apple-converted-space">                            </span>&lt;h3 class="font-display font-bold text-3xl text-espresso mb-3"&gt;3. Egyeztetés&lt;/h3&gt;</p>
+<p class="p1"><span class="Apple-converted-space">                            </span>&lt;p class="text-espresso/70"&gt;Bemutatjuk a terveket. Őszinte visszajelzéseket kérünk, és addig finomítjuk a részleteket, amíg 100%-ig nem érzed a magadénak az eredményt.&lt;/p&gt;</p>
+<p class="p1"><span class="Apple-converted-space">                        </span>&lt;/div&gt;</p>
+<p class="p1"><span class="Apple-converted-space">                        </span>&lt;div class="z-10 w-20 h-20 rounded-full bg-peach flex items-center justify-center font-display font-bold text-3xl text-espresso border-4 border-espresso shadow-groovy order-1 md:order-2"&gt;</p>
+<p class="p1"><span class="Apple-converted-space">                            </span>03</p>
+<p class="p1"><span class="Apple-converted-space">                        </span>&lt;/div&gt;</p>
+<p class="p1"><span class="Apple-converted-space">                        </span>&lt;div class="md:w-5/12 order-3"&gt;&lt;/div&gt;</p>
+<p class="p1"><span class="Apple-converted-space">                    </span>&lt;/div&gt;</p>
+<p class="p2"><br></p>
+<p class="p1"><span class="Apple-converted-space">                    </span>&lt;!-- Lépés 4 --&gt;</p>
+<p class="p1"><span class="Apple-converted-space">                    </span>&lt;div class="relative flex flex-col md:flex-row items-center justify-between gap-8 animate-on-scroll"&gt;</p>
+<p class="p1"><span class="Apple-converted-space">                        </span>&lt;div class="md:w-5/12 order-3 md:order-1"&gt;&lt;/div&gt;</p>
+<p class="p1"><span class="Apple-converted-space">                        </span>&lt;div class="z-10 w-20 h-20 rounded-full bg-espresso text-cream flex items-center justify-center font-display font-bold text-3xl border-4 border-coral shadow-groovy order-1 md:order-2 hover:scale-110 transition-transform"&gt;</p>
+<p class="p1"><span class="Apple-converted-space">                            </span>04</p>
+<p class="p1"><span class="Apple-converted-space">                        </span>&lt;/div&gt;</p>
+<p class="p1"><span class="Apple-converted-space">                        </span>&lt;div class="md:w-5/12 text-left order-2 md:order-3"&gt;</p>
+<p class="p1"><span class="Apple-converted-space">                            </span>&lt;h3 class="font-display font-bold text-3xl text-espresso mb-3"&gt;4. Átadás &amp; Start&lt;/h3&gt;</p>
+<p class="p1"><span class="Apple-converted-space">                            </span>&lt;p class="text-espresso/70"&gt;Mindent megkapsz tökéletesen rendezve. Logó fájlok, sablonok, és a Brand Guide. Készen állsz, hogy meghódítsd a piacot az új külsőddel!&lt;/p&gt;</p>
+<p class="p1"><span class="Apple-converted-space">                        </span>&lt;/div&gt;</p>
+<p class="p1"><span class="Apple-converted-space">                    </span>&lt;/div&gt;</p>
+<p class="p1"><span class="Apple-converted-space">                </span>&lt;/div&gt;</p>
+<p class="p1"><span class="Apple-converted-space">            </span>&lt;/div&gt;</p>
+<p class="p1"><span class="Apple-converted-space">        </span>&lt;/div&gt;</p>
+<p class="p1"><span class="Apple-converted-space">    </span>&lt;/section&gt;</p>
+<p class="p2"><br></p>
+<p class="p1"><span class="Apple-converted-space">    </span>&lt;!-- 5. SZEKCIÓ: REFERENCIÁK --&gt;</p>
+<p class="p1"><span class="Apple-converted-space">    </span>&lt;section id="testimonials" class="py-32 px-6 overflow-hidden bg-espresso text-cream relative z-20"&gt;</p>
+<p class="p1"><span class="Apple-converted-space">        </span>&lt;div class="max-w-7xl mx-auto"&gt;</p>
+<p class="p1"><span class="Apple-converted-space">            </span>&lt;h2 class="font-display font-bold text-5xl md:text-7xl mb-20 text-center animate-on-scroll text-peach"&gt;Amit partnereink mondanak&lt;/h2&gt;</p>
+<p class="p2"><span class="Apple-converted-space">            </span></p>
+<p class="p1"><span class="Apple-converted-space">            </span>&lt;div class="flex flex-wrap md:flex-nowrap gap-8 justify-center"&gt;</p>
+<p class="p1"><span class="Apple-converted-space">                </span>&lt;!-- Testimonial 1 --&gt;</p>
+<p class="p1"><span class="Apple-converted-space">                </span>&lt;div class="bg-cream text-espresso p-10 rounded-[2rem] w-full md:w-1/3 rotate-2 hover:-rotate-1 transition-transform border-4 border-coral shadow-groovy hoverable"&gt;</p>
+<p class="p1"><span class="Apple-converted-space">                    </span>&lt;div class="flex text-coral mb-4"&gt;</p>
+<p class="p1"><span class="Apple-converted-space">                        </span>★★★★★</p>
+<p class="p1"><span class="Apple-converted-space">                    </span>&lt;/div&gt;</p>
+<p class="p1"><span class="Apple-converted-space">                    </span>&lt;p class="text-lg italic mb-8 font-medium"&gt;"Korábban szürkének és unalmasnak éreztem a vállalkozásom megjelenését. Az Invios olyan életet és melegséget lehelt a márkámba, hogy a megkereséseim azonnal megugrottak. Brutálisan profik!"&lt;/p&gt;</p>
+<p class="p1"><span class="Apple-converted-space">                    </span>&lt;div class="flex items-center gap-4"&gt;</p>
+<p class="p1"><span class="Apple-converted-space">                        </span>&lt;div class="w-12 h-12 bg-coral rounded-full"&gt;&lt;/div&gt;</p>
+<p class="p1"><span class="Apple-converted-space">                        </span>&lt;div&gt;</p>
+<p class="p1"><span class="Apple-converted-space">                            </span>&lt;div class="font-bold font-display"&gt;Tóth Anna&lt;/div&gt;</p>
+<p class="p1"><span class="Apple-converted-space">                            </span>&lt;div class="text-sm opacity-70"&gt;Boutique Kávézó Tulajdonos&lt;/div&gt;</p>
+<p class="p1"><span class="Apple-converted-space">                        </span>&lt;/div&gt;</p>
+<p class="p1"><span class="Apple-converted-space">                    </span>&lt;/div&gt;</p>
+<p class="p1"><span class="Apple-converted-space">                </span>&lt;/div&gt;</p>
+<p class="p2"><br></p>
+<p class="p1"><span class="Apple-converted-space">                </span>&lt;!-- Testimonial 2 --&gt;</p>
+<p class="p1"><span class="Apple-converted-space">                </span>&lt;div class="bg-peach text-espresso p-10 rounded-[2rem] w-full md:w-1/3 -rotate-2 hover:rotate-1 transition-transform border-4 border-yellow shadow-groovy hoverable mt-0 md:mt-12"&gt;</p>
+<p class="p1"><span class="Apple-converted-space">                    </span>&lt;div class="flex text-espresso mb-4"&gt;</p>
+<p class="p1"><span class="Apple-converted-space">                        </span>★★★★★</p>
+<p class="p1"><span class="Apple-converted-space">                    </span>&lt;/div&gt;</p>
+<p class="p1"><span class="Apple-converted-space">                    </span>&lt;p class="text-lg italic mb-8 font-medium"&gt;"A maximalista stílusuktól kicsit tartottam először, de olyan hihetetlenül barátságos és elegáns lett a végeredmény, hogy minden ügyfelem a logómat dicséri. A legjobb befektetés volt."&lt;/p&gt;</p>
+<p class="p1"><span class="Apple-converted-space">                    </span>&lt;div class="flex items-center gap-4"&gt;</p>
+<p class="p1"><span class="Apple-converted-space">                        </span>&lt;div class="w-12 h-12 bg-yellow rounded-full"&gt;&lt;/div&gt;</p>
+<p class="p1"><span class="Apple-converted-space">                        </span>&lt;div&gt;</p>
+<p class="p1"><span class="Apple-converted-space">                            </span>&lt;div class="font-bold font-display"&gt;Kovács Péter&lt;/div&gt;</p>
+<p class="p1"><span class="Apple-converted-space">                            </span>&lt;div class="text-sm opacity-70"&gt;Prémium Kézműves Pékség&lt;/div&gt;</p>
+<p class="p1"><span class="Apple-converted-space">                        </span>&lt;/div&gt;</p>
+<p class="p1"><span class="Apple-converted-space">                    </span>&lt;/div&gt;</p>
+<p class="p1"><span class="Apple-converted-space">                </span>&lt;/div&gt;</p>
+<p class="p1"><span class="Apple-converted-space">            </span>&lt;/div&gt;</p>
+<p class="p1"><span class="Apple-converted-space">        </span>&lt;/div&gt;</p>
+<p class="p1"><span class="Apple-converted-space">    </span>&lt;/section&gt;</p>
+<p class="p2"><br></p>
+<p class="p1"><span class="Apple-converted-space">    </span>&lt;!-- 6. SZEKCIÓ: KAPCSOLAT / CTA --&gt;</p>
+<p class="p1"><span class="Apple-converted-space">    </span>&lt;section id="contact" class="py-32 px-6 md:px-12 lg:px-24 bg-coral relative z-20 rounded-b-[3rem]"&gt;</p>
+<p class="p1"><span class="Apple-converted-space">        </span>&lt;div class="absolute inset-0 bg-[url('data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSIyMCIgaGVpZ2h0PSIyMCI+PGNpcmNsZSBjeD0iMiIgY3k9IjIiIHI9IjIiIGZpbGw9IiNmZmYiIG9wYWNpdHk9IjAuMSIvPjwvc3ZnPg==')] opacity-50"&gt;&lt;/div&gt;</p>
+<p class="p1"><span class="Apple-converted-space">        </span>&lt;div class="max-w-4xl mx-auto bg-cream p-10 md:p-16 rounded-[3rem] shadow-[16px_16px_0px_0px_rgba(42,27,20,1)] border-4 border-espresso relative animate-on-scroll"&gt;</p>
+<p class="p1"><span class="Apple-converted-space">            </span>&lt;h2 class="font-display font-bold text-5xl md:text-6xl text-espresso mb-4 text-center"&gt;Készen állsz a szintlépésre?&lt;/h2&gt;</p>
+<p class="p1"><span class="Apple-converted-space">            </span>&lt;p class="text-center text-espresso/80 text-xl mb-12"&gt;Töltsd ki az alábbi rövid űrlapot, és kérj egy teljesen ingyenes, kötelezettségmentes konzultációt.&lt;/p&gt;</p>
+<p class="p2"><span class="Apple-converted-space">            </span></p>
+<p class="p1"><span class="Apple-converted-space">            </span>&lt;form class="space-y-6" onsubmit="event.preventDefault(); alert('Köszönjük! Az üzenet sikeresen elküldve. (Ez egy bemutató oldal)');"&gt;</p>
+<p class="p1"><span class="Apple-converted-space">                </span>&lt;div class="grid grid-cols-1 md:grid-cols-2 gap-6"&gt;</p>
+<p class="p1"><span class="Apple-converted-space">                    </span>&lt;div&gt;</p>
+<p class="p1"><span class="Apple-converted-space">                        </span>&lt;label class="block text-espresso font-bold mb-2 ml-2"&gt;Neved&lt;/label&gt;</p>
+<p class="p1"><span class="Apple-converted-space">                        </span>&lt;input type="text" required class="w-full bg-warmgray border-2 border-espresso rounded-2xl px-6 py-4 focus:outline-none focus:ring-4 focus:ring-yellow/50 transition-all font-sans"&gt;</p>
+<p class="p1"><span class="Apple-converted-space">                    </span>&lt;/div&gt;</p>
+<p class="p1"><span class="Apple-converted-space">                    </span>&lt;div&gt;</p>
+<p class="p1"><span class="Apple-converted-space">                        </span>&lt;label class="block text-espresso font-bold mb-2 ml-2"&gt;Email címed&lt;/label&gt;</p>
+<p class="p1"><span class="Apple-converted-space">                        </span>&lt;input type="email" required class="w-full bg-warmgray border-2 border-espresso rounded-2xl px-6 py-4 focus:outline-none focus:ring-4 focus:ring-yellow/50 transition-all font-sans"&gt;</p>
+<p class="p1"><span class="Apple-converted-space">                    </span>&lt;/div&gt;</p>
+<p class="p1"><span class="Apple-converted-space">                </span>&lt;/div&gt;</p>
+<p class="p1"><span class="Apple-converted-space">                </span>&lt;div&gt;</p>
+<p class="p1"><span class="Apple-converted-space">                    </span>&lt;label class="block text-espresso font-bold mb-2 ml-2"&gt;Vállalkozásod típusa / Weboldalad&lt;/label&gt;</p>
+<p class="p1"><span class="Apple-converted-space">                    </span>&lt;input type="text" class="w-full bg-warmgray border-2 border-espresso rounded-2xl px-6 py-4 focus:outline-none focus:ring-4 focus:ring-yellow/50 transition-all font-sans"&gt;</p>
+<p class="p1"><span class="Apple-converted-space">                </span>&lt;/div&gt;</p>
+<p class="p1"><span class="Apple-converted-space">                </span>&lt;div&gt;</p>
+<p class="p1"><span class="Apple-converted-space">                    </span>&lt;label class="block text-espresso font-bold mb-2 ml-2"&gt;Miben segíthetünk? (Röviden)&lt;/label&gt;</p>
+<p class="p1"><span class="Apple-converted-space">                    </span>&lt;textarea rows="4" required class="w-full bg-warmgray border-2 border-espresso rounded-2xl px-6 py-4 focus:outline-none focus:ring-4 focus:ring-yellow/50 transition-all font-sans resize-none"&gt;&lt;/textarea&gt;</p>
+<p class="p1"><span class="Apple-converted-space">                </span>&lt;/div&gt;</p>
+<p class="p1"><span class="Apple-converted-space">                </span>&lt;div class="text-center pt-4"&gt;</p>
+<p class="p1"><span class="Apple-converted-space">                    </span>&lt;button type="submit" class="hoverable bg-espresso text-cream px-12 py-5 rounded-full font-display font-bold text-xl shadow-groovy hover:shadow-groovy-hover hover:-translate-y-1 transition-all w-full md:w-auto"&gt;</p>
+<p class="p1"><span class="Apple-converted-space">                        </span>Küldés &amp; Konzultáció Kérése</p>
+<p class="p1"><span class="Apple-converted-space">                    </span>&lt;/button&gt;</p>
+<p class="p1"><span class="Apple-converted-space">                </span>&lt;/div&gt;</p>
+<p class="p1"><span class="Apple-converted-space">            </span>&lt;/form&gt;</p>
+<p class="p1"><span class="Apple-converted-space">        </span>&lt;/div&gt;</p>
+<p class="p1"><span class="Apple-converted-space">    </span>&lt;/section&gt;</p>
+<p class="p2"><br></p>
+<p class="p1"><span class="Apple-converted-space">    </span>&lt;!-- Footer --&gt;</p>
+<p class="p1"><span class="Apple-converted-space">    </span>&lt;footer class="bg-espresso text-cream pt-32 pb-12 px-6 text-center relative z-10 -mt-20"&gt;</p>
+<p class="p1"><span class="Apple-converted-space">        </span>&lt;h2 class="font-display font-black text-[15vw] leading-none opacity-20 hover:opacity-100 transition-opacity duration-700 tracking-tighter text-peach selection:bg-transparent cursor-default"&gt;INVIOS&lt;/h2&gt;</p>
+<p class="p1"><span class="Apple-converted-space">        </span>&lt;div class="mt-12 text-sm opacity-60 flex flex-col md:flex-row justify-center gap-4 md:gap-12"&gt;</p>
+<p class="p1"><span class="Apple-converted-space">            </span>&lt;p&gt;© 2026 Invios Kreatív Ügynökség.&lt;/p&gt;</p>
+<p class="p1"><span class="Apple-converted-space">            </span>&lt;a href="#" class="hover:text-coral transition-colors hoverable"&gt;Adatvédelmi tájékoztató&lt;/a&gt;</p>
+<p class="p1"><span class="Apple-converted-space">            </span>&lt;a href="#" class="hover:text-coral transition-colors hoverable"&gt;ÁSZF&lt;/a&gt;</p>
+<p class="p1"><span class="Apple-converted-space">        </span>&lt;/div&gt;</p>
+<p class="p1"><span class="Apple-converted-space">    </span>&lt;/footer&gt;</p>
+<p class="p2"><br></p>
+<p class="p1"><span class="Apple-converted-space">    </span>&lt;!-- Three.js Shader Text Logic &amp; Interactions --&gt;</p>
+<p class="p1"><span class="Apple-converted-space">    </span>&lt;script&gt;</p>
+<p class="p1"><span class="Apple-converted-space">        </span>document.addEventListener('DOMContentLoaded', () =&gt; {</p>
+<p class="p1"><span class="Apple-converted-space">            </span>// --- EGYEDI KURZOR LOGIKA ---</p>
+<p class="p1"><span class="Apple-converted-space">            </span>const cursor = document.getElementById('custom-cursor');</p>
+<p class="p1"><span class="Apple-converted-space">            </span>const hoverables = document.querySelectorAll('.hoverable, a, button, input, textarea');</p>
+<p class="p2"><br></p>
+<p class="p1"><span class="Apple-converted-space">            </span>document.addEventListener('mousemove', (e) =&gt; {</p>
+<p class="p1"><span class="Apple-converted-space">                </span>cursor.style.left = e.clientX + 'px';</p>
+<p class="p1"><span class="Apple-converted-space">                </span>cursor.style.top = e.clientY + 'px';</p>
+<p class="p1"><span class="Apple-converted-space">            </span>});</p>
+<p class="p2"><br></p>
+<p class="p1"><span class="Apple-converted-space">            </span>hoverables.forEach(el =&gt; {</p>
+<p class="p1"><span class="Apple-converted-space">                </span>el.addEventListener('mouseenter', () =&gt; document.body.classList.add('hover-active'));</p>
+<p class="p1"><span class="Apple-converted-space">                </span>el.addEventListener('mouseleave', () =&gt; document.body.classList.remove('hover-active'));</p>
+<p class="p1"><span class="Apple-converted-space">            </span>});</p>
+<p class="p2"><br></p>
+<p class="p1"><span class="Apple-converted-space">            </span>// --- GSAP ANIMÁCIÓK ---</p>
+<p class="p1"><span class="Apple-converted-space">            </span>gsap.registerPlugin(ScrollTrigger);</p>
+<p class="p2"><br></p>
+<p class="p1"><span class="Apple-converted-space">            </span>const animatedElements = document.querySelectorAll('.animate-on-scroll');</p>
+<p class="p1"><span class="Apple-converted-space">            </span>animatedElements.forEach(el =&gt; {</p>
+<p class="p1"><span class="Apple-converted-space">                </span>gsap.fromTo(el,<span class="Apple-converted-space"> </span></p>
+<p class="p1"><span class="Apple-converted-space">                    </span>{ y: 50, opacity: 0 },</p>
+<p class="p1"><span class="Apple-converted-space">                    </span>{<span class="Apple-converted-space"> </span></p>
+<p class="p1"><span class="Apple-converted-space">                        </span>y: 0,<span class="Apple-converted-space"> </span></p>
+<p class="p1"><span class="Apple-converted-space">                        </span>opacity: 1,<span class="Apple-converted-space"> </span></p>
+<p class="p1"><span class="Apple-converted-space">                        </span>duration: 1,<span class="Apple-converted-space"> </span></p>
+<p class="p1"><span class="Apple-converted-space">                        </span>ease: "power3.out",</p>
+<p class="p1"><span class="Apple-converted-space">                        </span>scrollTrigger: {</p>
+<p class="p1"><span class="Apple-converted-space">                            </span>trigger: el,</p>
+<p class="p1"><span class="Apple-converted-space">                            </span>start: "top 85%",</p>
+<p class="p1"><span class="Apple-converted-space">                            </span>toggleActions: "play none none reverse"</p>
+<p class="p1"><span class="Apple-converted-space">                        </span>}</p>
+<p class="p1"><span class="Apple-converted-space">                    </span>}</p>
+<p class="p1"><span class="Apple-converted-space">                </span>);</p>
+<p class="p1"><span class="Apple-converted-space">            </span>});</p>
+<p class="p2"><br></p>
+<p class="p1"><span class="Apple-converted-space">            </span>// --- THREE.JS SHADER ALAPÚ ANIMÁLT SZÖVEG ---</p>
+<p class="p1"><span class="Apple-converted-space">            </span>const container = document.getElementById('shader-container');</p>
+<p class="p2"><span class="Apple-converted-space">            </span></p>
+<p class="p1"><span class="Apple-converted-space">            </span>// Színtér, Kamera, Renderer</p>
+<p class="p1"><span class="Apple-converted-space">            </span>const scene = new THREE.Scene();</p>
+<p class="p1"><span class="Apple-converted-space">            </span>// Orthographic camera hogy pixel-perfect legyen a vászonhoz</p>
+<p class="p1"><span class="Apple-converted-space">            </span>const camera = new THREE.OrthographicCamera( -1, 1, 1, -1, 0.1, 10 );</p>
+<p class="p1"><span class="Apple-converted-space">            </span>camera.position.z = 1;</p>
+<p class="p2"><br></p>
+<p class="p1"><span class="Apple-converted-space">            </span>const renderer = new THREE.WebGLRenderer({ alpha: true, antialias: true });</p>
+<p class="p1"><span class="Apple-converted-space">            </span>renderer.setPixelRatio(Math.min(window.devicePixelRatio, 2));</p>
+<p class="p1"><span class="Apple-converted-space">            </span>renderer.setSize(container.clientWidth, container.clientHeight);</p>
+<p class="p1"><span class="Apple-converted-space">            </span>container.appendChild(renderer.domElement);</p>
+<p class="p2"><br></p>
+<p class="p1"><span class="Apple-converted-space">            </span>// 2D Canvas a szöveg generálására (ez lesz a textúra)</p>
+<p class="p1"><span class="Apple-converted-space">            </span>const textCanvas = document.createElement('canvas');</p>
+<p class="p1"><span class="Apple-converted-space">            </span>const textCtx = textCanvas.getContext('2d');</p>
+<p class="p1"><span class="Apple-converted-space">            </span>let textTexture = new THREE.CanvasTexture(textCanvas);</p>
+<p class="p1"><span class="Apple-converted-space">            </span>textTexture.minFilter = THREE.LinearFilter;</p>
+<p class="p1"><span class="Apple-converted-space">            </span>textTexture.magFilter = THREE.LinearFilter;</p>
+<p class="p2"><br></p>
+<p class="p1"><span class="Apple-converted-space">            </span>function updateTextCanvas() {</p>
+<p class="p1"><span class="Apple-converted-space">                </span>const w = container.clientWidth;</p>
+<p class="p1"><span class="Apple-converted-space">                </span>const h = container.clientHeight;</p>
+<p class="p1"><span class="Apple-converted-space">                </span>const dpr = Math.min(window.devicePixelRatio, 2);</p>
+<p class="p2"><span class="Apple-converted-space">                </span></p>
+<p class="p1"><span class="Apple-converted-space">                </span>textCanvas.width = w * dpr;</p>
+<p class="p1"><span class="Apple-converted-space">                </span>textCanvas.height = h * dpr;</p>
+<p class="p2"><span class="Apple-converted-space">                </span></p>
+<p class="p1"><span class="Apple-converted-space">                </span>textCtx.scale(dpr, dpr);</p>
+<p class="p1"><span class="Apple-converted-space">                </span>textCtx.clearRect(0, 0, w, h);</p>
+<p class="p2"><br></p>
+<p class="p1"><span class="Apple-converted-space">                </span>// Dinamikus, sosem kilógó betűméret számítás</p>
+<p class="p1"><span class="Apple-converted-space">                </span>const text = "INVIOS";</p>
+<p class="p1"><span class="Apple-converted-space">                </span>let fontSize = 300;</p>
+<p class="p1"><span class="Apple-converted-space">                </span>textCtx.font = `900 ${fontSize}px Syne, sans-serif`;</p>
+<p class="p1"><span class="Apple-converted-space">                </span>let textWidth = textCtx.measureText(text).width;</p>
+<p class="p2"><span class="Apple-converted-space">                </span></p>
+<p class="p1"><span class="Apple-converted-space">                </span>// Csökkentjük a méretet, amíg be nem fér (max 90% szélesség)</p>
+<p class="p1"><span class="Apple-converted-space">                </span>while(textWidth &gt; w * 0.9 &amp;&amp; fontSize &gt; 20) {</p>
+<p class="p1"><span class="Apple-converted-space">                    </span>fontSize -= 5;</p>
+<p class="p1"><span class="Apple-converted-space">                    </span>textCtx.font = `900 ${fontSize}px Syne, sans-serif`;</p>
+<p class="p1"><span class="Apple-converted-space">                    </span>textWidth = textCtx.measureText(text).width;</p>
+<p class="p1"><span class="Apple-converted-space">                </span>}</p>
+<p class="p2"><br></p>
+<p class="p1"><span class="Apple-converted-space">                </span>// Szöveg rajzolása (Középre, a viewport felső részébe tolva picit)</p>
+<p class="p1"><span class="Apple-converted-space">                </span>textCtx.fillStyle = '#2A1B14'; // Espresso szín, amit majd a shader torzít és színez</p>
+<p class="p1"><span class="Apple-converted-space">                </span>textCtx.textAlign = 'center';</p>
+<p class="p1"><span class="Apple-converted-space">                </span>textCtx.textBaseline = 'middle';</p>
+<p class="p1"><span class="Apple-converted-space">                </span>textCtx.fillText(text, w / 2, h / 2 - 50);</p>
+<p class="p2"><br></p>
+<p class="p1"><span class="Apple-converted-space">                </span>textTexture.needsUpdate = true;</p>
+<p class="p1"><span class="Apple-converted-space">            </span>}</p>
+<p class="p2"><br></p>
+<p class="p1"><span class="Apple-converted-space">            </span>// Betűtípus betöltés megvárása, utána rajzolás</p>
+<p class="p1"><span class="Apple-converted-space">            </span>document.fonts.ready.then(() =&gt; {</p>
+<p class="p1"><span class="Apple-converted-space">                </span>updateTextCanvas();</p>
+<p class="p1"><span class="Apple-converted-space">            </span>});</p>
+<p class="p2"><br></p>
+<p class="p1"><span class="Apple-converted-space">            </span>// Shader Material a torzításhoz</p>
+<p class="p1"><span class="Apple-converted-space">            </span>const vertexShader = `</p>
+<p class="p1"><span class="Apple-converted-space">                </span>varying vec2 vUv;</p>
+<p class="p1"><span class="Apple-converted-space">                </span>void main() {</p>
+<p class="p1"><span class="Apple-converted-space">                    </span>vUv = uv;</p>
+<p class="p1"><span class="Apple-converted-space">                    </span>gl_Position = projectionMatrix * modelViewMatrix * vec4(position, 1.0);</p>
+<p class="p1"><span class="Apple-converted-space">                </span>}</p>
+<p class="p1"><span class="Apple-converted-space">            </span>`;</p>
+<p class="p2"><br></p>
+<p class="p1"><span class="Apple-converted-space">            </span>const fragmentShader = `</p>
+<p class="p1"><span class="Apple-converted-space">                </span>varying vec2 vUv;</p>
+<p class="p1"><span class="Apple-converted-space">                </span>uniform sampler2D u_texture;</p>
+<p class="p1"><span class="Apple-converted-space">                </span>uniform float u_time;</p>
+<p class="p1"><span class="Apple-converted-space">                </span>uniform vec2 u_mouse;</p>
+<p class="p1"><span class="Apple-converted-space">                </span>uniform vec2 u_resolution;</p>
+<p class="p2"><br></p>
+<p class="p1"><span class="Apple-converted-space">                </span>void main() {</p>
+<p class="p1"><span class="Apple-converted-space">                    </span>vec2 uv = vUv;</p>
+<p class="p2"><br></p>
+<p class="p1"><span class="Apple-converted-space">                    </span>// Groovy / Hullámos torzítás a szövegen idő alapján</p>
+<p class="p1"><span class="Apple-converted-space">                    </span>float waveX = sin(uv.y * 15.0 + u_time * 2.0) * 0.015;</p>
+<p class="p1"><span class="Apple-converted-space">                    </span>float waveY = cos(uv.x * 10.0 + u_time * 1.5) * 0.015;</p>
+<p class="p2"><span class="Apple-converted-space">                    </span></p>
+<p class="p1"><span class="Apple-converted-space">                    </span>uv.x += waveX;</p>
+<p class="p1"><span class="Apple-converted-space">                    </span>uv.y += waveY;</p>
+<p class="p2"><br></p>
+<p class="p1"><span class="Apple-converted-space">                    </span>// Egér interakció (taszítja a pixeleket)</p>
+<p class="p1"><span class="Apple-converted-space">                    </span>float dist = distance(uv, u_mouse);</p>
+<p class="p1"><span class="Apple-converted-space">                    </span>float effectRadius = 0.2;</p>
+<p class="p1"><span class="Apple-converted-space">                    </span>if(dist &lt; effectRadius) {</p>
+<p class="p1"><span class="Apple-converted-space">                        </span>float force = (effectRadius - dist) / effectRadius;</p>
+<p class="p1"><span class="Apple-converted-space">                        </span>vec2 dir = normalize(uv - u_mouse);</p>
+<p class="p1"><span class="Apple-converted-space">                        </span>uv += dir * force * 0.05; // Taszítás erőssége</p>
+<p class="p1"><span class="Apple-converted-space">                    </span>}</p>
+<p class="p2"><br></p>
+<p class="p1"><span class="Apple-converted-space">                    </span>// Textúra mintavételezés a torzított koordinátákkal</p>
+<p class="p1"><span class="Apple-converted-space">                    </span>vec4 color = texture2D(u_texture, uv);</p>
+<p class="p2"><br></p>
+<p class="p1"><span class="Apple-converted-space">                    </span>// Ha a pixel nem átlátszó (tehát a szöveg része), alkalmazzunk egy finom meleg gradienst rajta</p>
+<p class="p1"><span class="Apple-converted-space">                    </span>if(color.a &gt; 0.1) {</p>
+<p class="p1"><span class="Apple-converted-space">                        </span>// Korall és sárga színátmenet a szövegen belül (mix a base espresso színnel)</p>
+<p class="p1"><span class="Apple-converted-space">                        </span>vec3 gradientColor = mix(vec3(1.0, 0.49, 0.31), vec3(1.0, 0.84, 0.0), uv.x + waveX); // Coral to Yellow</p>
+<p class="p2"><span class="Apple-converted-space">                        </span></p>
+<p class="p1"><span class="Apple-converted-space">                        </span>// Kicsit rátesszük a textúrára</p>
+<p class="p1"><span class="Apple-converted-space">                        </span>color.rgb = mix(color.rgb, gradientColor, 0.4 + sin(u_time)*0.1);<span class="Apple-converted-space"> </span></p>
+<p class="p1"><span class="Apple-converted-space">                    </span>}</p>
+<p class="p2"><br></p>
+<p class="p1"><span class="Apple-converted-space">                    </span>gl_FragColor = color;</p>
+<p class="p1"><span class="Apple-converted-space">                </span>}</p>
+<p class="p1"><span class="Apple-converted-space">            </span>`;</p>
+<p class="p2"><br></p>
+<p class="p1"><span class="Apple-converted-space">            </span>const uniforms = {</p>
+<p class="p1"><span class="Apple-converted-space">                </span>u_texture: { value: textTexture },</p>
+<p class="p1"><span class="Apple-converted-space">                </span>u_time: { value: 0.0 },</p>
+<p class="p1"><span class="Apple-converted-space">                </span>u_mouse: { value: new THREE.Vector2(-1, -1) }, // Kezdetben képernyőn kívül</p>
+<p class="p1"><span class="Apple-converted-space">                </span>u_resolution: { value: new THREE.Vector2(container.clientWidth, container.clientHeight) }</p>
+<p class="p1"><span class="Apple-converted-space">            </span>};</p>
+<p class="p2"><br></p>
+<p class="p1"><span class="Apple-converted-space">            </span>const material = new THREE.ShaderMaterial({</p>
+<p class="p1"><span class="Apple-converted-space">                </span>vertexShader: vertexShader,</p>
+<p class="p1"><span class="Apple-converted-space">                </span>fragmentShader: fragmentShader,</p>
+<p class="p1"><span class="Apple-converted-space">                </span>uniforms: uniforms,</p>
+<p class="p1"><span class="Apple-converted-space">                </span>transparent: true</p>
+<p class="p1"><span class="Apple-converted-space">            </span>});</p>
+<p class="p2"><br></p>
+<p class="p1"><span class="Apple-converted-space">            </span>// Plane ami kitölti a kamerát</p>
+<p class="p1"><span class="Apple-converted-space">            </span>const geometry = new THREE.PlaneGeometry(2, 2);</p>
+<p class="p1"><span class="Apple-converted-space">            </span>const plane = new THREE.Mesh(geometry, material);</p>
+<p class="p1"><span class="Apple-converted-space">            </span>scene.add(plane);</p>
+<p class="p2"><br></p>
+<p class="p1"><span class="Apple-converted-space">            </span>// Egérkövetés a shaderhez</p>
+<p class="p1"><span class="Apple-converted-space">            </span>window.addEventListener('mousemove', (e) =&gt; {</p>
+<p class="p1"><span class="Apple-converted-space">                </span>// Konvertálás Normalized Device Coordinates-ba (0.0 to 1.0 a shadernek)</p>
+<p class="p1"><span class="Apple-converted-space">                </span>uniforms.u_mouse.value.x = e.clientX / window.innerWidth;</p>
+<p class="p1"><span class="Apple-converted-space">                </span>uniforms.u_mouse.value.y = 1.0 - (e.clientY / window.innerHeight);</p>
+<p class="p1"><span class="Apple-converted-space">            </span>});</p>
+<p class="p2"><br></p>
+<p class="p1"><span class="Apple-converted-space">            </span>// Érintőképernyő támogatás</p>
+<p class="p1"><span class="Apple-converted-space">            </span>window.addEventListener('touchmove', (e) =&gt; {</p>
+<p class="p1"><span class="Apple-converted-space">                </span>if(e.touches.length &gt; 0) {</p>
+<p class="p1"><span class="Apple-converted-space">                    </span>uniforms.u_mouse.value.x = e.touches[0].clientX / window.innerWidth;</p>
+<p class="p1"><span class="Apple-converted-space">                    </span>uniforms.u_mouse.value.y = 1.0 - (e.touches[0].clientY / window.innerHeight);</p>
+<p class="p1"><span class="Apple-converted-space">                </span>}</p>
+<p class="p1"><span class="Apple-converted-space">            </span>});</p>
+<p class="p2"><br></p>
+<p class="p1"><span class="Apple-converted-space">            </span>// Ablak átméretezés kezelése</p>
+<p class="p1"><span class="Apple-converted-space">            </span>window.addEventListener('resize', () =&gt; {</p>
+<p class="p1"><span class="Apple-converted-space">                </span>const w = container.clientWidth;</p>
+<p class="p1"><span class="Apple-converted-space">                </span>const h = container.clientHeight;</p>
+<p class="p2"><span class="Apple-converted-space">                </span></p>
+<p class="p1"><span class="Apple-converted-space">                </span>renderer.setSize(w, h);</p>
+<p class="p1"><span class="Apple-converted-space">                </span>uniforms.u_resolution.value.set(w, h);</p>
+<p class="p1"><span class="Apple-converted-space">                </span>updateTextCanvas();</p>
+<p class="p1"><span class="Apple-converted-space">            </span>});</p>
+<p class="p2"><br></p>
+<p class="p1"><span class="Apple-converted-space">            </span>// Animációs ciklus</p>
+<p class="p1"><span class="Apple-converted-space">            </span>const clock = new THREE.Clock();</p>
+<p class="p1"><span class="Apple-converted-space">            </span>function animate() {</p>
+<p class="p1"><span class="Apple-converted-space">                </span>requestAnimationFrame(animate);</p>
+<p class="p1"><span class="Apple-converted-space">                </span>uniforms.u_time.value = clock.getElapsedTime();</p>
+<p class="p1"><span class="Apple-converted-space">                </span>renderer.render(scene, camera);</p>
+<p class="p1"><span class="Apple-converted-space">            </span>}</p>
+<p class="p1"><span class="Apple-converted-space">            </span>animate();</p>
+<p class="p1"><span class="Apple-converted-space">        </span>});</p>
+<p class="p1"><span class="Apple-converted-space">    </span>&lt;/script&gt;</p>
+<p class="p1">&lt;/body&gt;</p>
+<p class="p1">&lt;/html&gt;</p>
+</body>
+</html>
