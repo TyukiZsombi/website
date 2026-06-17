@@ -48,7 +48,6 @@
             background-color: #FFF9F5;
             color: #2A1B14;
             overflow-x: hidden;
-            cursor: none; /* Egyedi kurzort használunk */
         }
 
         /* Dithering Zajos Overlay */
@@ -63,28 +62,6 @@
             opacity: 0.35;
             mix-blend-mode: overlay;
             background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noiseFilter'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.8' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noiseFilter)'/%3E%3C/svg%3E");
-        }
-
-        /* Egyedi kurzor */
-        #custom-cursor {
-            position: fixed;
-            top: 0;
-            left: 0;
-            width: 20px;
-            height: 20px;
-            background-color: #FF7F50;
-            border-radius: 50%;
-            pointer-events: none;
-            z-index: 10000;
-            transform: translate(-50%, -50%);
-            transition: width 0.3s, height 0.3s, background-color 0.3s;
-            mix-blend-mode: difference;
-        }
-        
-        .hover-active #custom-cursor {
-            width: 60px;
-            height: 60px;
-            background-color: #FFD700;
         }
 
         /* Meleg Gradiens Hátterek és Animációk */
@@ -163,16 +140,15 @@
 
     <!-- Globális effektek -->
     <div class="noise-overlay"></div>
-    <div id="custom-cursor"></div>
 
     <!-- Navigáció -->
     <nav class="fixed top-0 w-full z-50 px-6 py-4 flex justify-between items-center mix-blend-difference text-cream">
         <div class="font-display font-bold text-2xl tracking-tighter uppercase">Invios</div>
         <div class="hidden md:flex space-x-8 font-sans font-semibold text-sm">
-            <a href="#about" class="hoverable hover:text-coral transition-colors">Rólunk</a>
-            <a href="#services" class="hoverable hover:text-coral transition-colors">Szolgáltatások</a>
-            <a href="#process" class="hoverable hover:text-coral transition-colors">Folyamat</a>
-            <a href="#contact" class="hoverable bg-cream text-espresso px-5 py-2 rounded-full hover:bg-coral hover:text-cream transition-all">Kezdjük el</a>
+            <a href="#about" class="hover:text-coral transition-colors">Rólunk</a>
+            <a href="#services" class="hover:text-coral transition-colors">Szolgáltatások</a>
+            <a href="#market-data" class="hover:text-coral transition-colors">A Piac</a>
+            <a href="#contact" class="bg-cream text-espresso px-5 py-2 rounded-full hover:bg-coral hover:text-cream transition-all">Kezdjük el</a>
         </div>
     </nav>
 
@@ -187,7 +163,7 @@
                 A vállalkozásod megérdemli, hogy úgy nézzen ki, amilyen valójában.
             </p>
             <div class="mt-6 flex gap-4">
-                <a href="#contact" class="hoverable bg-espresso text-cream px-8 py-4 rounded-full font-bold text-lg shadow-groovy hover:shadow-groovy-hover hover:-translate-y-1 transition-all">
+                <a href="#contact" class="bg-espresso text-cream px-8 py-4 rounded-full font-bold text-lg shadow-groovy hover:shadow-groovy-hover hover:-translate-y-1 transition-all">
                     Ingyenes konzultáció
                 </a>
             </div>
@@ -219,7 +195,6 @@
                 <div class="absolute inset-0 bg-coral blob-shape opacity-80 mix-blend-multiply"></div>
                 <div class="absolute inset-4 bg-yellow blob-shape opacity-60 mix-blend-multiply" style="animation-delay: -2s;"></div>
                 <div class="absolute inset-8 bg-peach blob-shape shadow-groovy flex items-center justify-center overflow-hidden border-4 border-espresso">
-                    <!-- Kép helykitöltő -->
                     <img src="https://images.unsplash.com/photo-1542744173-8e7e53415bb0?ixlib=rb-4.0.3&auto=format&fit=crop&w=1000&q=80" alt="Csapatmunka" class="w-full h-full object-cover opacity-80 mix-blend-luminosity hover:mix-blend-normal transition-all duration-700">
                 </div>
             </div>
@@ -242,32 +217,31 @@
             </div>
 
             <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
-                <!-- Kártya 1 -->
-                <div class="glass-groovy-card p-10 hoverable animate-on-scroll">
+                <div class="glass-groovy-card p-10 animate-on-scroll">
                     <div class="w-16 h-16 rounded-full bg-coral mb-6 flex items-center justify-center border-2 border-espresso">
                         <svg class="w-8 h-8 text-espresso" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M7 21a4 4 0 01-4-4V5a2 2 0 012-2h4a2 2 0 012 2v12a4 4 0 01-4 4zm0 0h12a2 2 0 002-2v-4a2 2 0 00-2-2h-2.343M11 7.343l1.657-1.657a2 2 0 012.828 0l2.829 2.829a2 2 0 010 2.828l-8.486 8.485M7 17h.01"></path></svg>
                     </div>
                     <h3 class="font-display font-bold text-3xl mb-4 text-espresso">Logó & Identitás</h3>
                     <p class="text-espresso/80">Egyedi, emlékezetes logók, amelyek kiemelik a márkádat a tömegből, meleg és modern köntösben.</p>
                 </div>
-                <!-- Kártya 2 -->
-                <div class="glass-groovy-card p-10 hoverable animate-on-scroll">
+                
+                <div class="glass-groovy-card p-10 animate-on-scroll">
                     <div class="w-16 h-16 rounded-full bg-yellow mb-6 flex items-center justify-center border-2 border-espresso">
                         <svg class="w-8 h-8 text-espresso" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 16l4.586-4.586a2 2 0 012.828 0L16 16m-2-2l1.586-1.586a2 2 0 012.828 0L20 14m-6-6h.01M6 20h12a2 2 0 002-2V6a2 2 0 00-2-2H6a2 2 0 00-2 2v12a2 2 0 002 2z"></path></svg>
                     </div>
                     <h3 class="font-display font-bold text-3xl mb-4 text-espresso">Színek & Betűk</h3>
                     <p class="text-espresso/80">Gondosan összeállított színpaletták és tipográfiai rendszerek, amelyek pszichológiailag is hatnak a célközönségre.</p>
                 </div>
-                <!-- Kártya 3 -->
-                <div class="glass-groovy-card p-10 hoverable animate-on-scroll">
+                
+                <div class="glass-groovy-card p-10 animate-on-scroll">
                     <div class="w-16 h-16 rounded-full bg-peach mb-6 flex items-center justify-center border-2 border-espresso">
                         <svg class="w-8 h-8 text-espresso" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 18h.01M8 21h8a2 2 0 002-2V5a2 2 0 00-2-2H8a2 2 0 00-2 2v14a2 2 0 002 2z"></path></svg>
                     </div>
                     <h3 class="font-display font-bold text-3xl mb-4 text-espresso">Social Media</h3>
                     <p class="text-espresso/80">Könnyen használható, figyelemfelkeltő sablonok Instagramra, Facebookra, hogy a kommunikációd vizuálisan is üssön.</p>
                 </div>
-                <!-- Kártya 4 -->
-                <div class="glass-groovy-card p-10 lg:col-span-3 hoverable animate-on-scroll bg-gradient-to-r from-peach to-yellow">
+                
+                <div class="glass-groovy-card p-10 lg:col-span-3 animate-on-scroll bg-gradient-to-r from-peach to-yellow">
                     <div class="flex flex-col md:flex-row items-center gap-8">
                         <div class="flex-1">
                             <h3 class="font-display font-bold text-4xl mb-4 text-espresso">Teljes Brand Style Guide</h3>
@@ -282,21 +256,19 @@
         </div>
     </section>
 
-    <!-- 4. SZEKCIÓ: FOLYAMAT (Hogyan dolgozunk) -->
+    <!-- 4. SZEKCIÓ: FOLYAMAT -->
     <section id="process" class="py-32 px-6 md:px-12 lg:px-24 bg-cream relative z-20">
         <div class="max-w-5xl mx-auto">
             <h2 class="font-display font-bold text-5xl md:text-7xl text-espresso text-center mb-24 animate-on-scroll">A Megújulás Útja</h2>
             
             <div class="relative">
-                <!-- Hullámos összekötő vonal (csak asztalon látszik jól) -->
                 <div class="hidden md:block absolute left-[50%] top-0 bottom-0 w-1 bg-coral opacity-30 transform -translate-x-1/2"></div>
                 
                 <div class="space-y-24">
-                    <!-- Lépés 1 -->
                     <div class="relative flex flex-col md:flex-row items-center justify-between gap-8 animate-on-scroll">
                         <div class="md:w-5/12 text-right order-2 md:order-1">
                             <h3 class="font-display font-bold text-3xl text-espresso mb-3">1. Megismerés</h3>
-                            <p class="text-espresso/70">Mélyre ásunk. Megbeszéljük a céljaidat, az értékeidet és azt, hogy mit szeretnél sugározni a világnak. Közösen határozzuk meg a vizuális irányt.</p>
+                            <p class="text-espresso/70">Mélyre ásunk. Megbeszéljük a céljaidat, az értékeidet és azt, hogy mit szeretnél sugározni a világnak.</p>
                         </div>
                         <div class="z-10 w-20 h-20 rounded-full bg-coral flex items-center justify-center font-display font-bold text-3xl text-espresso border-4 border-espresso shadow-groovy order-1 md:order-2">
                             01
@@ -304,7 +276,6 @@
                         <div class="md:w-5/12 order-3"></div>
                     </div>
                     
-                    <!-- Lépés 2 -->
                     <div class="relative flex flex-col md:flex-row items-center justify-between gap-8 animate-on-scroll">
                         <div class="md:w-5/12 order-3 md:order-1"></div>
                         <div class="z-10 w-20 h-20 rounded-full bg-yellow flex items-center justify-center font-display font-bold text-3xl text-espresso border-4 border-espresso shadow-groovy order-1 md:order-2">
@@ -312,15 +283,14 @@
                         </div>
                         <div class="md:w-5/12 text-left order-2 md:order-3">
                             <h3 class="font-display font-bold text-3xl text-espresso mb-3">2. Tervezés & Varázslat</h3>
-                            <p class="text-espresso/70">Elvonulunk és alkotunk. A maximalista stílusjegyeket és az enterprise minőséget ötvözve létrehozunk 2-3 ütős koncepciót a márkádhoz.</p>
+                            <p class="text-espresso/70">Elvonulunk és alkotunk. A maximalista stílusjegyeket és az enterprise minőséget ötvözve létrehozunk koncepciókat.</p>
                         </div>
                     </div>
 
-                    <!-- Lépés 3 -->
                     <div class="relative flex flex-col md:flex-row items-center justify-between gap-8 animate-on-scroll">
                         <div class="md:w-5/12 text-right order-2 md:order-1">
                             <h3 class="font-display font-bold text-3xl text-espresso mb-3">3. Egyeztetés</h3>
-                            <p class="text-espresso/70">Bemutatjuk a terveket. Őszinte visszajelzéseket kérünk, és addig finomítjuk a részleteket, amíg 100%-ig nem érzed a magadénak az eredményt.</p>
+                            <p class="text-espresso/70">Bemutatjuk a terveket. Őszinte visszajelzéseket kérünk, és addig finomítjuk, amíg 100%-ig nem érzed a magadénak.</p>
                         </div>
                         <div class="z-10 w-20 h-20 rounded-full bg-peach flex items-center justify-center font-display font-bold text-3xl text-espresso border-4 border-espresso shadow-groovy order-1 md:order-2">
                             03
@@ -328,7 +298,6 @@
                         <div class="md:w-5/12 order-3"></div>
                     </div>
 
-                    <!-- Lépés 4 -->
                     <div class="relative flex flex-col md:flex-row items-center justify-between gap-8 animate-on-scroll">
                         <div class="md:w-5/12 order-3 md:order-1"></div>
                         <div class="z-10 w-20 h-20 rounded-full bg-espresso text-cream flex items-center justify-center font-display font-bold text-3xl border-4 border-coral shadow-groovy order-1 md:order-2 hover:scale-110 transition-transform">
@@ -336,7 +305,7 @@
                         </div>
                         <div class="md:w-5/12 text-left order-2 md:order-3">
                             <h3 class="font-display font-bold text-3xl text-espresso mb-3">4. Átadás & Start</h3>
-                            <p class="text-espresso/70">Mindent megkapsz tökéletesen rendezve. Logó fájlok, sablonok, és a Brand Guide. Készen állsz, hogy meghódítsd a piacot az új külsőddel!</p>
+                            <p class="text-espresso/70">Mindent megkapsz tökéletesen rendezve. Készen állsz, hogy meghódítsd a piacot az új külsőddel!</p>
                         </div>
                     </div>
                 </div>
@@ -344,42 +313,55 @@
         </div>
     </section>
 
-    <!-- 5. SZEKCIÓ: REFERENCIÁK -->
-    <section id="testimonials" class="py-32 px-6 overflow-hidden bg-espresso text-cream relative z-20">
+    <!-- 5. SZEKCIÓ: ADATOK / PIACI HELYZET (ÚJ) -->
+    <section id="market-data" class="py-32 px-6 overflow-hidden bg-espresso text-cream relative z-20">
         <div class="max-w-7xl mx-auto">
-            <h2 class="font-display font-bold text-5xl md:text-7xl mb-20 text-center animate-on-scroll text-peach">Amit partnereink mondanak</h2>
+            <div class="text-center mb-20 animate-on-scroll">
+                <h2 class="font-display font-bold text-5xl md:text-7xl text-peach mb-6">Az adatok nem hazudnak.</h2>
+                <p class="text-2xl text-cream/70 max-w-3xl mx-auto">A hazai KKV szektor digitális lemaradásban van. Ami rossz hír a piacnak, az <span class="text-yellow font-bold">hatalmas lehetőség neked</span>, hogy egy profi arculattal azonnal kitűnj.</p>
+            </div>
             
-            <div class="flex flex-wrap md:flex-nowrap gap-8 justify-center">
-                <!-- Testimonial 1 -->
-                <div class="bg-cream text-espresso p-10 rounded-[2rem] w-full md:w-1/3 rotate-2 hover:-rotate-1 transition-transform border-4 border-coral shadow-groovy hoverable">
-                    <div class="flex text-coral mb-4">
-                        ★★★★★
-                    </div>
-                    <p class="text-lg italic mb-8 font-medium">"Korábban szürkének és unalmasnak éreztem a vállalkozásom megjelenését. Az Invios olyan életet és melegséget lehelt a márkámba, hogy a megkereséseim azonnal megugrottak. Brutálisan profik!"</p>
-                    <div class="flex items-center gap-4">
-                        <div class="w-12 h-12 bg-coral rounded-full"></div>
-                        <div>
-                            <div class="font-bold font-display">Tóth Anna</div>
-                            <div class="text-sm opacity-70">Boutique Kávézó Tulajdonos</div>
-                        </div>
-                    </div>
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-8 mb-12">
+                <!-- Adat 1 -->
+                <div class="bg-cream text-espresso p-10 rounded-[2rem] border-4 border-coral shadow-groovy animate-on-scroll hover:-translate-y-2 transition-transform">
+                    <div class="font-display font-black text-6xl md:text-7xl text-coral mb-2">42,6%</div>
+                    <div class="text-sm font-bold text-espresso/50 uppercase tracking-wider mb-6">VS 27,1% EU átlag</div>
+                    <h3 class="font-display font-bold text-2xl mb-4">Alapszintű digitalizáció alatt</h3>
+                    <p class="text-espresso/80 font-medium">A magyar vállalkozások közel fele komoly lemaradásban van. Ha te most beruházol a megjelenésedbe és a stratégiádba, pillanatok alatt behozhatatlan előnyre teszel szert a versenytársaiddal szemben.</p>
                 </div>
 
-                <!-- Testimonial 2 -->
-                <div class="bg-peach text-espresso p-10 rounded-[2rem] w-full md:w-1/3 -rotate-2 hover:rotate-1 transition-transform border-4 border-yellow shadow-groovy hoverable mt-0 md:mt-12">
-                    <div class="flex text-espresso mb-4">
-                        ★★★★★
-                    </div>
-                    <p class="text-lg italic mb-8 font-medium">"A maximalista stílusuktól kicsit tartottam először, de olyan hihetetlenül barátságos és elegáns lett a végeredmény, hogy minden ügyfelem a logómat dicséri. A legjobb befektetés volt."</p>
-                    <div class="flex items-center gap-4">
-                        <div class="w-12 h-12 bg-yellow rounded-full"></div>
-                        <div>
-                            <div class="font-bold font-display">Kovács Péter</div>
-                            <div class="text-sm opacity-70">Prémium Kézműves Pékség</div>
-                        </div>
+                <!-- Adat 2 -->
+                <div class="bg-peach text-espresso p-10 rounded-[2rem] border-4 border-yellow shadow-groovy animate-on-scroll hover:-translate-y-2 transition-transform md:mt-8">
+                    <div class="font-display font-black text-6xl md:text-7xl text-espresso mb-2">50%</div>
+                    <div class="text-sm font-bold text-espresso/50 uppercase tracking-wider mb-6">Mélyponton az index (14/100)</div>
+                    <h3 class="font-display font-bold text-2xl mb-4">Egyáltalán nem hirdet</h3>
+                    <p class="text-espresso/80 font-medium">A cégek fele láthatatlan. Sokan stratégia nélkül, "egycsatornás jelenléttel" próbálkoznak. Egy erős, bizalmat építő vizuális brand az első lépés ahhoz, hogy a marketinged tényleg megtérüljön.</p>
+                </div>
+
+                <!-- Adat 3 -->
+                <div class="bg-yellow text-espresso p-10 rounded-[2rem] border-4 border-espresso shadow-groovy animate-on-scroll hover:-translate-y-2 transition-transform">
+                    <div class="font-display font-black text-6xl md:text-7xl text-espresso mb-2">9 Mrd</div>
+                    <div class="text-sm font-bold text-espresso/50 uppercase tracking-wider mb-6">Állami Támogatás (Ft)</div>
+                    <h3 class="font-display font-bold text-2xl mb-4">Finanszírozott weboldalak</h3>
+                    <p class="text-espresso/80 font-medium">A piaci rés akkora, hogy az állam 400K–1,5M Ft közötti támogatással segíti az alapszintű weboldalak elkészítését. A hiány felismert tény — ne maradj le az ingyenes megújulásról!</p>
+                </div>
+            </div>
+
+            <!-- Széles adat kártya -->
+            <div class="bg-coral text-espresso p-10 md:p-14 rounded-[2rem] border-4 border-espresso shadow-groovy animate-on-scroll flex flex-col md:flex-row items-center gap-10">
+                <div class="w-full md:w-2/3">
+                    <h3 class="font-display font-bold text-3xl md:text-4xl mb-4">A külföldi platformok (Temu, Shein) nem alszanak.</h3>
+                    <p class="text-xl font-medium text-espresso/90">A hazai KKV-k reakció nélkül állnak az agresszív külföldi marketinggel szemben. A versenytársad már nem a szomszéd cég. Csak egy <span class="font-bold underline decoration-4 decoration-yellow">profi, hiteles és hazai vizuális jelenléttel</span> nyerheted el a tudatos vásárlók bizalmát.</p>
+                </div>
+                <div class="w-full md:w-1/3 flex justify-center">
+                    <div class="w-32 h-32 bg-espresso rounded-full flex items-center justify-center border-4 border-yellow transform rotate-12">
+                        <svg class="w-16 h-16 text-yellow" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 7h8m0 0v8m0-8l-8 8-4-4-6 6"></path>
+                        </svg>
                     </div>
                 </div>
             </div>
+
         </div>
     </section>
 
@@ -387,7 +369,7 @@
     <section id="contact" class="py-32 px-6 md:px-12 lg:px-24 bg-coral relative z-20 rounded-b-[3rem]">
         <div class="absolute inset-0 bg-[url('data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSIyMCIgaGVpZ2h0PSIyMCI+PGNpcmNsZSBjeD0iMiIgY3k9IjIiIHI9IjIiIGZpbGw9IiNmZmYiIG9wYWNpdHk9IjAuMSIvPjwvc3ZnPg==')] opacity-50"></div>
         <div class="max-w-4xl mx-auto bg-cream p-10 md:p-16 rounded-[3rem] shadow-[16px_16px_0px_0px_rgba(42,27,20,1)] border-4 border-espresso relative animate-on-scroll">
-            <h2 class="font-display font-bold text-5xl md:text-6xl text-espresso mb-4 text-center">Készen állsz a szintlépésre?</h2>
+            <h2 class="font-display font-bold text-5xl md:text-6xl text-espresso mb-4 text-center">Ragadd meg az előnyt!</h2>
             <p class="text-center text-espresso/80 text-xl mb-12">Töltsd ki az alábbi rövid űrlapot, és kérj egy teljesen ingyenes, kötelezettségmentes konzultációt.</p>
             
             <form class="space-y-6" onsubmit="event.preventDefault(); alert('Köszönjük! Az üzenet sikeresen elküldve. (Ez egy bemutató oldal)');">
@@ -410,7 +392,7 @@
                     <textarea rows="4" required class="w-full bg-warmgray border-2 border-espresso rounded-2xl px-6 py-4 focus:outline-none focus:ring-4 focus:ring-yellow/50 transition-all font-sans resize-none"></textarea>
                 </div>
                 <div class="text-center pt-4">
-                    <button type="submit" class="hoverable bg-espresso text-cream px-12 py-5 rounded-full font-display font-bold text-xl shadow-groovy hover:shadow-groovy-hover hover:-translate-y-1 transition-all w-full md:w-auto">
+                    <button type="submit" class="bg-espresso text-cream px-12 py-5 rounded-full font-display font-bold text-xl shadow-groovy hover:shadow-groovy-hover hover:-translate-y-1 transition-all w-full md:w-auto">
                         Küldés & Konzultáció Kérése
                     </button>
                 </div>
@@ -423,28 +405,14 @@
         <h2 class="font-display font-black text-[15vw] leading-none opacity-20 hover:opacity-100 transition-opacity duration-700 tracking-tighter text-peach selection:bg-transparent cursor-default">INVIOS</h2>
         <div class="mt-12 text-sm opacity-60 flex flex-col md:flex-row justify-center gap-4 md:gap-12">
             <p>© 2026 Invios Kreatív Ügynökség.</p>
-            <a href="#" class="hover:text-coral transition-colors hoverable">Adatvédelmi tájékoztató</a>
-            <a href="#" class="hover:text-coral transition-colors hoverable">ÁSZF</a>
+            <a href="#" class="hover:text-coral transition-colors">Adatvédelmi tájékoztató</a>
+            <a href="#" class="hover:text-coral transition-colors">ÁSZF</a>
         </div>
     </footer>
 
     <!-- Three.js Shader Text Logic & Interactions -->
     <script>
         document.addEventListener('DOMContentLoaded', () => {
-            // --- EGYEDI KURZOR LOGIKA ---
-            const cursor = document.getElementById('custom-cursor');
-            const hoverables = document.querySelectorAll('.hoverable, a, button, input, textarea');
-
-            document.addEventListener('mousemove', (e) => {
-                cursor.style.left = e.clientX + 'px';
-                cursor.style.top = e.clientY + 'px';
-            });
-
-            hoverables.forEach(el => {
-                el.addEventListener('mouseenter', () => document.body.classList.add('hover-active'));
-                el.addEventListener('mouseleave', () => document.body.classList.remove('hover-active'));
-            });
-
             // --- GSAP ANIMÁCIÓK ---
             gsap.registerPlugin(ScrollTrigger);
 
@@ -469,9 +437,7 @@
             // --- THREE.JS SHADER ALAPÚ ANIMÁLT SZÖVEG ---
             const container = document.getElementById('shader-container');
             
-            // Színtér, Kamera, Renderer
             const scene = new THREE.Scene();
-            // Orthographic camera hogy pixel-perfect legyen a vászonhoz
             const camera = new THREE.OrthographicCamera( -1, 1, 1, -1, 0.1, 10 );
             camera.position.z = 1;
 
@@ -480,7 +446,6 @@
             renderer.setSize(container.clientWidth, container.clientHeight);
             container.appendChild(renderer.domElement);
 
-            // 2D Canvas a szöveg generálására (ez lesz a textúra)
             const textCanvas = document.createElement('canvas');
             const textCtx = textCanvas.getContext('2d');
             let textTexture = new THREE.CanvasTexture(textCanvas);
@@ -498,21 +463,18 @@
                 textCtx.scale(dpr, dpr);
                 textCtx.clearRect(0, 0, w, h);
 
-                // Dinamikus, sosem kilógó betűméret számítás
                 const text = "INVIOS";
                 let fontSize = 300;
                 textCtx.font = `900 ${fontSize}px Syne, sans-serif`;
                 let textWidth = textCtx.measureText(text).width;
                 
-                // Csökkentjük a méretet, amíg be nem fér (max 90% szélesség)
                 while(textWidth > w * 0.9 && fontSize > 20) {
                     fontSize -= 5;
                     textCtx.font = `900 ${fontSize}px Syne, sans-serif`;
                     textWidth = textCtx.measureText(text).width;
                 }
 
-                // Szöveg rajzolása (Középre, a viewport felső részébe tolva picit)
-                textCtx.fillStyle = '#2A1B14'; // Espresso szín, amit majd a shader torzít és színez
+                textCtx.fillStyle = '#2A1B14';
                 textCtx.textAlign = 'center';
                 textCtx.textBaseline = 'middle';
                 textCtx.fillText(text, w / 2, h / 2 - 50);
@@ -520,12 +482,10 @@
                 textTexture.needsUpdate = true;
             }
 
-            // Betűtípus betöltés megvárása, utána rajzolás
             document.fonts.ready.then(() => {
                 updateTextCanvas();
             });
 
-            // Shader Material a torzításhoz
             const vertexShader = `
                 varying vec2 vUv;
                 void main() {
@@ -544,31 +504,24 @@
                 void main() {
                     vec2 uv = vUv;
 
-                    // Groovy / Hullámos torzítás a szövegen idő alapján
                     float waveX = sin(uv.y * 15.0 + u_time * 2.0) * 0.015;
                     float waveY = cos(uv.x * 10.0 + u_time * 1.5) * 0.015;
                     
                     uv.x += waveX;
                     uv.y += waveY;
 
-                    // Egér interakció (taszítja a pixeleket)
                     float dist = distance(uv, u_mouse);
                     float effectRadius = 0.2;
                     if(dist < effectRadius) {
                         float force = (effectRadius - dist) / effectRadius;
                         vec2 dir = normalize(uv - u_mouse);
-                        uv += dir * force * 0.05; // Taszítás erőssége
+                        uv += dir * force * 0.05;
                     }
 
-                    // Textúra mintavételezés a torzított koordinátákkal
                     vec4 color = texture2D(u_texture, uv);
 
-                    // Ha a pixel nem átlátszó (tehát a szöveg része), alkalmazzunk egy finom meleg gradienst rajta
                     if(color.a > 0.1) {
-                        // Korall és sárga színátmenet a szövegen belül (mix a base espresso színnel)
-                        vec3 gradientColor = mix(vec3(1.0, 0.49, 0.31), vec3(1.0, 0.84, 0.0), uv.x + waveX); // Coral to Yellow
-                        
-                        // Kicsit rátesszük a textúrára
+                        vec3 gradientColor = mix(vec3(1.0, 0.49, 0.31), vec3(1.0, 0.84, 0.0), uv.x + waveX);
                         color.rgb = mix(color.rgb, gradientColor, 0.4 + sin(u_time)*0.1); 
                     }
 
@@ -579,7 +532,7 @@
             const uniforms = {
                 u_texture: { value: textTexture },
                 u_time: { value: 0.0 },
-                u_mouse: { value: new THREE.Vector2(-1, -1) }, // Kezdetben képernyőn kívül
+                u_mouse: { value: new THREE.Vector2(-1, -1) },
                 u_resolution: { value: new THREE.Vector2(container.clientWidth, container.clientHeight) }
             };
 
@@ -590,19 +543,15 @@
                 transparent: true
             });
 
-            // Plane ami kitölti a kamerát
             const geometry = new THREE.PlaneGeometry(2, 2);
             const plane = new THREE.Mesh(geometry, material);
             scene.add(plane);
 
-            // Egérkövetés a shaderhez
             window.addEventListener('mousemove', (e) => {
-                // Konvertálás Normalized Device Coordinates-ba (0.0 to 1.0 a shadernek)
                 uniforms.u_mouse.value.x = e.clientX / window.innerWidth;
                 uniforms.u_mouse.value.y = 1.0 - (e.clientY / window.innerHeight);
             });
 
-            // Érintőképernyő támogatás
             window.addEventListener('touchmove', (e) => {
                 if(e.touches.length > 0) {
                     uniforms.u_mouse.value.x = e.touches[0].clientX / window.innerWidth;
@@ -610,7 +559,6 @@
                 }
             });
 
-            // Ablak átméretezés kezelése
             window.addEventListener('resize', () => {
                 const w = container.clientWidth;
                 const h = container.clientHeight;
@@ -620,7 +568,6 @@
                 updateTextCanvas();
             });
 
-            // Animációs ciklus
             const clock = new THREE.Clock();
             function animate() {
                 requestAnimationFrame(animate);
@@ -632,3 +579,4 @@
     </script>
 </body>
 </html>
+
