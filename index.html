@@ -153,7 +153,7 @@
     <!-- 1. SZEKCIÓ: HERO -->
     <section class="relative w-full h-screen flex flex-col justify-center items-center overflow-hidden cool-gradient-bg">
         
-        <div class="relative z-20 w-full max-w-5xl mx-auto flex flex-col items-center px-4 md:px-6 text-center mt-32 md:mt-48">
+        <div class="relative z-20 w-full max-w-5xl mx-auto flex flex-col items-center px-4 md:px-6 text-center mt-48 md:mt-56">
             <p class="font-display font-bold text-navy responsive-slogan max-w-4xl text-balance drop-shadow-md">
                 A vállalkozásod megérdemli, hogy úgy nézzen ki, amilyen valójában.
             </p>
@@ -413,25 +413,34 @@
             const dynamicLogo = document.getElementById('dynamic-logo');
             const dynamicText = document.getElementById('dynamic-text');
             let logoScrollTrigger;
+            let lastWindowWidth = window.innerWidth;
 
             function setupLogoAnimation() {
-                if (logoScrollTrigger) logoScrollTrigger.kill();
+                if (logoScrollTrigger) {
+                    logoScrollTrigger.animation.progress(1); // Kényszerítve befejezi a korábbi animációt törlés előtt
+                    logoScrollTrigger.kill();
+                }
 
                 gsap.set([dynamicLogo, dynamicText], { clearProps: "all" });
 
+                // Kikényszerítjük a böngészőből a stílusok frissítését, hogy pontos értéket kapjunk
+                dynamicLogo.getBoundingClientRect();
+
                 const rect = dynamicLogo.getBoundingClientRect();
-                const viewportWidth = document.documentElement.clientWidth; // Pontosabb mérés a window.innerWidth helyett
+                const viewportWidth = window.innerWidth;
+                const viewportHeight = window.innerHeight;
+
+                // TÖKÉLETES RESPONSIVE MÉRETEZÉS: Abszolút pixelszámok a túlzott skálázás helyett
+                // Mobilon maximum 240px széles (vagy a képernyő 70%-a), asztalon max 450px.
+                const maxLogoWidth = viewportWidth < 768 ? Math.min(240, viewportWidth * 0.7) : 450;
+                const targetScale = maxLogoWidth / rect.width;
+
                 const targetX = (viewportWidth / 2) - (rect.left + rect.width / 2);
-                const heroCenterY = window.innerHeight * 0.35; 
+                // Picit magasabbra pozícionáljuk, hogy kényelmesen elférjen a szlogen fölött
+                const heroCenterY = viewportHeight * 0.28; 
                 const targetY = heroCenterY - (rect.top + rect.height / 2);
 
-                // Kiszámoljuk a maximális skálázást, hogy biztosan ne lógjon ki semmilyen mobilképernyőn (85% képernyőszélesség max)
-                const maxScale = (viewportWidth * 0.85) / rect.width;
-                let targetScale = viewportWidth > 768 ? 5.5 : 4;
-                
-                if (targetScale > maxScale) {
-                    targetScale = maxScale;
-                }
+                const startLetterSpacing = viewportWidth < 768 ? "6px" : "15px";
 
                 logoScrollTrigger = ScrollTrigger.create({
                     trigger: "body",
@@ -445,7 +454,7 @@
                             0
                         )
                         .fromTo(dynamicText,
-                            { letterSpacing: "15px" },
+                            { letterSpacing: startLetterSpacing },
                             { letterSpacing: "-2.6px", ease: "power2.out" },
                             0
                         )
@@ -458,10 +467,15 @@
 
             let resizeTimer;
             window.addEventListener('resize', () => {
-                clearTimeout(resizeTimer);
-                resizeTimer = setTimeout(() => {
-                    setupLogoAnimation();
-                }, 250);
+                // Okostelefonokon a görgetés eltünteti az URL sávot, ami Resize-t hív meg.
+                // Ezzel a védelemmel CSAK akkor rajzoljuk újra, ha a szélesség ténylegesen megváltozott!
+                if (Math.abs(window.innerWidth - lastWindowWidth) > 10) {
+                    lastWindowWidth = window.innerWidth;
+                    clearTimeout(resizeTimer);
+                    resizeTimer = setTimeout(() => {
+                        setupLogoAnimation();
+                    }, 250);
+                }
             });
 
             // --- GSAP SCROLL ANIMÁCIÓK ---
@@ -488,5 +502,6 @@
     </script>
 </body>
 </html>
+
 
 
