@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0">
-    <title>Invios | Prémium Vizuális Modernizáció</title>
+    <title>Invios | Vizuális Modernizáció</title>
     
     <!-- Google Fonts -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -34,6 +34,557 @@
                     }
                 }
             }
+        }
+    </script>
+
+    <!-- GSAP -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/ScrollTrigger.min.js"></script>
+
+    <style>
+        /* Alap beállítások és egyedi formázások */
+        html, body {
+            background-color: #F8FAFC;
+            color: #0F172A;
+            overflow-x: hidden !important;
+            width: 100%;
+            max-width: 100%;
+        }
+
+        /* Dithering Zajos Overlay */
+        .noise-overlay {
+            position: fixed;
+            inset: 0;
+            width: 100%;
+            height: 100%;
+            pointer-events: none;
+            z-index: 9999;
+            opacity: 0.25; 
+            mix-blend-mode: overlay;
+            background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noiseFilter'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.8' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noiseFilter)'/%3E%3C/svg%3E");
+        }
+
+        @media (min-width: 768px) {
+            .noise-overlay { opacity: 0.35; }
+        }
+
+        /* Hideg Gradiens Hátterek és Animációk */
+        .cool-gradient-bg {
+            background: linear-gradient(120deg, #BAE6FD, #F8FAFC, #06B6D4, #3B82F6);
+            background-size: 300% 300%;
+            animation: gradientMove 12s ease infinite;
+        }
+
+        @keyframes gradientMove {
+            0% { background-position: 0% 50%; }
+            50% { background-position: 100% 50%; }
+            100% { background-position: 0% 50%; }
+        }
+
+        /* Hullámos formák (Wavy shapes) */
+        .blob-shape {
+            border-radius: 40% 60% 70% 30% / 40% 50% 60% 50%;
+            animation: morph 8s ease-in-out infinite both alternate;
+        }
+
+        @keyframes morph {
+            0% { border-radius: 40% 60% 70% 30% / 40% 50% 60% 50%; }
+            100% { border-radius: 60% 40% 30% 70% / 60% 30% 70% 40%; }
+        }
+
+        /* Marquee animáció */
+        .marquee-container {
+            overflow: hidden;
+            white-space: nowrap;
+            position: relative;
+        }
+        .marquee-content {
+            display: inline-block;
+            animation: marquee 20s linear infinite;
+        }
+        @keyframes marquee {
+            0% { transform: translateX(0); }
+            100% { transform: translateX(-50%); }
+        }
+        
+        /* Glassmorphism kártyák maximalista stílusban */
+        .glass-groovy-card {
+            background: rgba(248, 250, 252, 0.7);
+            backdrop-filter: blur(12px);
+            -webkit-backdrop-filter: blur(12px);
+            border: 2px solid #0F172A;
+            border-radius: 1.5rem;
+            transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+        }
+        
+        @media (min-width: 768px) {
+            .glass-groovy-card { border-radius: 2rem; }
+        }
+
+        .glass-groovy-card:hover {
+            transform: translateY(-8px) rotate(-1deg);
+            box-shadow: 0.6rem 0.6rem 0px 0px rgba(15, 23, 42, 1);
+            background: #BAE6FD;
+        }
+
+        /* Töréspontokra optimalizált tipográfia */
+        .responsive-slogan {
+            font-size: clamp(1.8rem, 4.5vw, 3.2rem); 
+            line-height: 1.45;
+        }
+
+        /* Globális védelem a betűk aljának és ékezeteinek levágása ellen */
+        .font-display, h1, h2, h3, h4, h5, h6, .marquee-content {
+            padding-top: 0.15em;
+            padding-bottom: 0.3em;
+            line-height: 1.5;
+        }
+    </style>
+</head>
+<body class="antialiased selection:bg-azure selection:text-snow">
+
+    <!-- Globális effektek -->
+    <div class="noise-overlay"></div>
+
+    <!-- Navigáció -->
+    <nav class="fixed top-0 w-full z-50 px-4 md:px-8 py-3 md:py-5 flex justify-between items-center mix-blend-difference text-snow" id="main-nav">
+        <!-- A mozgó, dinamikus logó (A viewBox drasztikusan megemelve a levágás ellen) -->
+        <a href="#" id="dynamic-logo" class="origin-center relative w-[76px] sm:w-[90px] md:w-[102px] h-6 md:h-8 flex items-center justify-center drop-shadow-sm text-snow overflow-visible">
+            <svg viewBox="0 0 240 140" class="w-full h-full overflow-visible">
+                <text x="50%" y="50%" dy="0.35em" text-anchor="middle" font-family="'Syne', sans-serif" font-weight="900" font-size="64" fill="currentColor" id="dynamic-text">INVIOS</text>
+            </svg>
+        </a>
+        <div class="flex font-sans font-semibold text-sm">
+            <a href="#contact" class="bg-snow text-navy px-5 py-2.5 md:px-6 md:py-3 text-sm md:text-base rounded-full hover:bg-azure hover:text-snow transition-all shadow-sm">Kezdjük el</a>
+        </div>
+    </nav>
+
+    <!-- 1. SZEKCIÓ: HERO -->
+    <section class="relative w-full min-h-[100svh] flex flex-col justify-center items-center overflow-hidden cool-gradient-bg">
+        <!-- Visszaállítva a stabil max-w és padding rendszerre a százalékos szélesség helyett -->
+        <div class="relative z-20 w-full max-w-5xl mx-auto flex flex-col items-center px-6 md:px-12 text-center mt-32 md:mt-48 lg:mt-56">
+            <p class="font-display font-bold text-navy responsive-slogan max-w-4xl text-balance drop-shadow-sm">
+                A vállalkozásod megérdemli, hogy úgy nézzen ki, amilyen valójában.
+            </p>
+            <div class="mt-8 md:mt-10 flex w-full sm:w-auto justify-center px-4">
+                <a href="#contact" class="bg-navy text-snow px-8 py-4 w-full sm:w-auto text-center rounded-full font-bold text-base md:text-lg shadow-groovy hover:shadow-groovy-hover hover:-translate-y-1 transition-all active:translate-y-1 active:shadow-none">
+                    Ingyenes konzultáció
+                </a>
+            </div>
+        </div>
+    </section>
+
+    <!-- 2. SZEKCIÓ: RÓLUNK -->
+    <section id="about" class="py-16 md:py-24 lg:py-32 px-5 md:px-12 lg:px-24 bg-snow relative z-20 rounded-t-[2rem] md:rounded-t-[3rem] -mt-8 md:-mt-10 shadow-2xl">
+        <div class="w-full max-w-7xl mx-auto grid grid-cols-1 lg:grid-cols-2 gap-10 md:gap-16 items-center">
+            <div class="space-y-6 md:space-y-8 animate-on-scroll text-center lg:text-left">
+                <h2 class="font-display font-bold text-4xl sm:text-5xl lg:text-7xl text-navy leading-snug">
+                    Több, mint <br class="hidden lg:block"/><span class="text-azure">esztétika.</span> Hitelesség.
+                </h2>
+                <p class="text-lg sm:text-xl md:text-2xl text-navy/80 font-light leading-relaxed text-balance">
+                    Sok fantasztikus kisvállalkozás veszíti el az ügyfeleit csupán azért, mert a vizuális megjelenésük nem tükrözi a szolgáltatásuk valódi minőségét.
+                </p>
+                <p class="text-base md:text-lg text-navy/70 leading-relaxed text-balance">
+                    Azért jöttünk létre, hogy áthidaljuk ezt a szakadékot. Nem csak logókat rajzolunk – emberközeli és profi arculatokat építünk, amelyek vonzzák a tekintetet és bizalmat ébresztenek.
+                </p>
+            </div>
+            <!-- Pixeles asztali magasságok (md:h-[400px]) helyett arányos százalékos skálázás (aspect-ratio) -->
+            <div class="relative h-[250px] sm:h-[350px] md:h-auto md:aspect-square lg:aspect-[4/3] w-full animate-on-scroll mt-8 lg:mt-0 px-4 sm:px-0">
+                <div class="absolute inset-0 bg-azure blob-shape opacity-80 mix-blend-multiply"></div>
+                <div class="absolute inset-4 bg-cyan blob-shape opacity-60 mix-blend-multiply" style="animation-delay: -2s;"></div>
+                <div class="absolute inset-6 sm:inset-8 bg-sky blob-shape shadow-groovy flex items-center justify-center overflow-hidden border-4 border-navy">
+                    <!-- Későbbi grafika helye -->
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Marquee Elválasztó -->
+    <div class="w-full overflow-hidden relative z-30 bg-snow">
+        <div class="bg-navy text-sky py-4 md:py-6 marquee-container border-y-4 border-navy transform -rotate-2 md:-rotate-1 scale-105 shadow-xl w-full">
+            <div class="marquee-content font-display font-bold text-xl md:text-3xl lg:text-4xl uppercase tracking-widest flex items-center gap-4">
+                <span>LOGÓ TERVEZÉS • SZÍNPALETTA • TIPOGRÁFIA • BRAND GUIDE • SOCIAL MEDIA • VIZUÁLIS MODERNIZÁCIÓ •</span>
+                <span>LOGÓ TERVEZÉS • SZÍNPALETTA • TIPOGRÁFIA • BRAND GUIDE • SOCIAL MEDIA • VIZUÁLIS MODERNIZÁCIÓ •</span>
+            </div>
+        </div>
+    </div>
+
+    <!-- 3. SZEKCIÓ: SZOLGÁLTATÁSOK -->
+    <section id="services" class="py-16 md:py-24 lg:py-32 px-5 md:px-0 bg-slate relative z-20">
+        <div class="w-full md:w-[90%] lg:w-[85%] max-w-7xl mx-auto">
+            <div class="text-center mb-12 md:mb-20 animate-on-scroll">
+                <h2 class="font-display font-bold text-4xl md:text-6xl lg:text-8xl text-navy">Miben segítünk?</h2>
+                <p class="text-base sm:text-lg md:text-2xl text-navy/70 max-w-2xl mx-auto px-4 text-balance mt-4 md:mt-6">Minden, amire szükséged van egy egységes, figyelemfelkeltő online jelenléthez.</p>
+            </div>
+
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-5 md:gap-8">
+                <div class="glass-groovy-card p-6 md:p-8 animate-on-scroll flex flex-col items-center md:items-start text-center md:text-left">
+                    <div class="w-14 h-14 md:w-16 md:h-16 rounded-full bg-azure mb-5 md:mb-6 flex items-center justify-center border-2 border-navy shrink-0">
+                        <svg class="w-6 h-6 md:w-8 md:h-8 text-navy" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M7 21a4 4 0 01-4-4V5a2 2 0 012-2h4a2 2 0 012 2v12a4 4 0 01-4 4zm0 0h12a2 2 0 002-2v-4a2 2 0 00-2-2h-2.343M11 7.343l1.657-1.657a2 2 0 012.828 0l2.829 2.829a2 2 0 010 2.828l-8.486 8.485M7 17h.01"></path></svg>
+                    </div>
+                    <h3 class="font-display font-bold text-2xl md:text-3xl mb-3 md:mb-4 text-navy">Logó & Identitás</h3>
+                    <p class="text-navy/80 text-sm md:text-base leading-relaxed">Egyedi, emlékezetes logók, amelyek kiemelik a márkádat a tömegből, letisztult és modern köntösben.</p>
+                </div>
+                
+                <div class="glass-groovy-card p-6 md:p-8 animate-on-scroll flex flex-col items-center md:items-start text-center md:text-left">
+                    <div class="w-14 h-14 md:w-16 md:h-16 rounded-full bg-cyan mb-5 md:mb-6 flex items-center justify-center border-2 border-navy shrink-0">
+                        <svg class="w-6 h-6 md:w-8 md:h-8 text-navy" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 16l4.586-4.586a2 2 0 012.828 0L16 16m-2-2l1.586-1.586a2 2 0 012.828 0L20 14m-6-6h.01M6 20h12a2 2 0 002-2V6a2 2 0 00-2-2H6a2 2 0 00-2 2v12a2 2 0 002 2z"></path></svg>
+                    </div>
+                    <h3 class="font-display font-bold text-2xl md:text-3xl mb-3 md:mb-4 text-navy">Színek & Betűk</h3>
+                    <p class="text-navy/80 text-sm md:text-base leading-relaxed">Gondosan összeállított színpaletták és tipográfiai rendszerek, amelyek pszichológiailag is hatnak a célközönségre.</p>
+                </div>
+                
+                <div class="glass-groovy-card p-6 md:p-8 animate-on-scroll flex flex-col items-center md:items-start text-center md:text-left">
+                    <div class="w-14 h-14 md:w-16 md:h-16 rounded-full bg-sky mb-5 md:mb-6 flex items-center justify-center border-2 border-navy shrink-0">
+                        <svg class="w-6 h-6 md:w-8 md:h-8 text-navy" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 18h.01M8 21h8a2 2 0 002-2V5a2 2 0 00-2-2H8a2 2 0 00-2 2v14a2 2 0 002 2z"></path></svg>
+                    </div>
+                    <h3 class="font-display font-bold text-2xl md:text-3xl mb-3 md:mb-4 text-navy">Social Media</h3>
+                    <p class="text-navy/80 text-sm md:text-base leading-relaxed">Könnyen használható, figyelemfelkeltő sablonok Instagramra, Facebookra, hogy a kommunikációd vizuálisan is üssön.</p>
+                </div>
+                
+                <!-- 4. Kártya átalakítva a többi mintájára -->
+                <div class="glass-groovy-card p-6 md:p-8 animate-on-scroll flex flex-col items-center md:items-start text-center md:text-left md:col-span-2 lg:col-span-3">
+                    <div class="w-14 h-14 md:w-16 md:h-16 rounded-full bg-navy text-snow mb-5 md:mb-6 flex items-center justify-center border-2 border-azure shrink-0">
+                        <svg class="w-6 h-6 md:w-8 md:h-8" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12h6m-6 4h6m2 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z"></path></svg>
+                    </div>
+                    <h3 class="font-display font-bold text-2xl md:text-3xl mb-3 md:mb-4 text-navy">Teljes Brand Style Guide</h3>
+                    <p class="text-navy/80 text-sm md:text-base leading-relaxed">Egy átfogó dokumentum, ami lefekteti a márkád vizuális szabályait, így a jövőben bárki tökéletesen tudja majd használni az arculatodat.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- 4. SZEKCIÓ: FOLYAMAT -->
+    <section id="process" class="py-16 md:py-24 lg:py-32 px-5 md:px-12 lg:px-24 bg-snow relative z-20">
+        <div class="w-full max-w-5xl mx-auto">
+            <h2 class="font-display font-bold text-4xl md:text-5xl lg:text-7xl text-navy text-center mb-12 md:mb-24 animate-on-scroll">A Megújulás Útja</h2>
+            
+            <div class="relative">
+                <div class="hidden md:block absolute left-[50%] top-0 bottom-0 w-[4px] bg-azure opacity-30 transform -translate-x-1/2 rounded-full"></div>
+                
+                <div class="space-y-12 sm:space-y-16 md:space-y-24">
+                    <!-- Lépés 1 -->
+                    <div class="relative flex flex-col md:flex-row items-center justify-between gap-4 md:gap-8 animate-on-scroll text-center md:text-right">
+                        <div class="w-full md:w-5/12 order-2 md:order-1">
+                            <h3 class="font-display font-bold text-2xl md:text-3xl text-navy mb-2 md:mb-3">1. Megismerés</h3>
+                            <p class="text-navy/70 text-sm md:text-base leading-relaxed px-4 md:px-0">Mélyre ásunk. Megbeszéljük a céljaidat, az értékeidet és azt, hogy mit szeretnél sugározni a világnak.</p>
+                        </div>
+                        <div class="z-10 w-14 h-14 md:w-20 md:h-20 rounded-full bg-azure flex items-center justify-center font-display font-bold text-xl md:text-3xl text-navy border-4 border-snow md:border-navy shadow-md md:shadow-groovy order-1 md:order-2 shrink-0">
+                            01
+                        </div>
+                        <div class="md:w-5/12 order-3 hidden md:block"></div>
+                    </div>
+                    
+                    <!-- Lépés 2 -->
+                    <div class="relative flex flex-col md:flex-row items-center justify-between gap-4 md:gap-8 animate-on-scroll text-center md:text-left">
+                        <div class="md:w-5/12 order-3 md:order-1 hidden md:block"></div>
+                        <div class="z-10 w-14 h-14 md:w-20 md:h-20 rounded-full bg-cyan flex items-center justify-center font-display font-bold text-xl md:text-3xl text-navy border-4 border-snow md:border-navy shadow-md md:shadow-groovy order-1 md:order-2 shrink-0">
+                            02
+                        </div>
+                        <div class="w-full md:w-5/12 order-2 md:order-3">
+                            <h3 class="font-display font-bold text-2xl md:text-3xl text-navy mb-2 md:mb-3">2. Tervezés & Varázslat</h3>
+                            <p class="text-navy/70 text-sm md:text-base leading-relaxed px-4 md:px-0">Elvonulunk és alkotunk. A maximalista stílusjegyeket és az enterprise minőséget ötvözve létrehozunk koncepciókat.</p>
+                        </div>
+                    </div>
+
+                    <!-- Lépés 3 -->
+                    <div class="relative flex flex-col md:flex-row items-center justify-between gap-4 md:gap-8 animate-on-scroll text-center md:text-right">
+                        <div class="w-full md:w-5/12 order-2 md:order-1">
+                            <h3 class="font-display font-bold text-2xl md:text-3xl text-navy mb-2 md:mb-3">3. Egyeztetés</h3>
+                            <p class="text-navy/70 text-sm md:text-base leading-relaxed px-4 md:px-0">Bemutatjuk a terveket. Őszinte visszajelzéseket kérünk, és addig finomítjuk, amíg 100%-ig nem érzed a magadénak.</p>
+                        </div>
+                        <div class="z-10 w-14 h-14 md:w-20 md:h-20 rounded-full bg-sky flex items-center justify-center font-display font-bold text-xl md:text-3xl text-navy border-4 border-snow md:border-navy shadow-md md:shadow-groovy order-1 md:order-2 shrink-0">
+                            03
+                        </div>
+                        <div class="md:w-5/12 order-3 hidden md:block"></div>
+                    </div>
+
+                    <!-- Lépés 4 -->
+                    <div class="relative flex flex-col md:flex-row items-center justify-between gap-4 md:gap-8 animate-on-scroll text-center md:text-left">
+                        <div class="md:w-5/12 order-3 md:order-1 hidden md:block"></div>
+                        <div class="z-10 w-14 h-14 md:w-20 md:h-20 rounded-full bg-navy text-snow flex items-center justify-center font-display font-bold text-xl md:text-3xl border-4 border-azure shadow-md md:shadow-groovy order-1 md:order-2 hover:scale-110 transition-transform shrink-0">
+                            04
+                        </div>
+                        <div class="w-full md:w-5/12 order-2 md:order-3">
+                            <h3 class="font-display font-bold text-2xl md:text-3xl text-navy mb-2 md:mb-3">4. Átadás & Start</h3>
+                            <p class="text-navy/70 text-sm md:text-base leading-relaxed px-4 md:px-0">Mindent megkapsz tökéletesen rendezve. Készen állsz, hogy meghódítsd a piacot az új külsőddel!</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- 5. SZEKCIÓ: ADATOK / PIACI HELYZET -->
+    <section id="market-data" class="py-16 md:py-24 lg:py-32 px-5 md:px-12 lg:px-24 overflow-hidden bg-navy text-snow relative z-20">
+        <div class="w-full max-w-7xl mx-auto">
+            <div class="text-center mb-12 md:mb-20 animate-on-scroll">
+                <h2 class="font-display font-bold text-4xl md:text-5xl lg:text-7xl text-sky">Az adatok nem hazudnak.</h2>
+                <p class="text-base sm:text-lg md:text-2xl text-snow/80 max-w-3xl mx-auto text-balance mt-4 md:mt-6">A hazai KKV szektor digitális lemaradásban van. Ami rossz hír a piacnak, az <span class="text-cyan font-bold block sm:inline mt-2 sm:mt-0">hatalmas lehetőség neked</span>, hogy egy profi arculattal azonnal kitűnj.</p>
+            </div>
+            
+            <!-- JAVÍTOTT RESZPONSZÍV RÁCS: 1 -> 2 -> 3 oszlop a képernyő szélességétől függően -->
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-5 md:gap-6 lg:gap-8 mb-8 md:mb-16">
+                <!-- 1. Kártya -->
+                <div class="bg-snow text-navy p-6 sm:p-8 lg:p-10 rounded-3xl border-4 border-azure shadow-groovy animate-on-scroll hover:-translate-y-2 transition-transform text-center md:text-left flex flex-col h-full">
+                    <div class="font-display font-black text-5xl sm:text-6xl lg:text-7xl text-azure mb-1 md:mb-2">42%</div>
+                    <div class="text-[10px] sm:text-xs md:text-sm font-bold text-navy/50 uppercase tracking-wider mb-4 md:mb-6">VS 27,1% EU átlag</div>
+                    <h3 class="font-display font-bold text-xl sm:text-2xl mb-2 md:mb-4">Alapszintű digitalizáció alatt</h3>
+                    <p class="text-navy/80 font-medium text-sm md:text-base mt-auto">A magyar vállalkozások közel fele komoly lemaradásban van. Ha te most beruházol a megjelenésedbe és a stratégiádba, pillanatok alatt behozhatatlan előnyre teszel szert.</p>
+                </div>
+
+                <!-- 2. Kártya -->
+                <div class="bg-sky text-navy p-6 sm:p-8 lg:p-10 rounded-3xl border-4 border-cyan shadow-groovy animate-on-scroll hover:-translate-y-2 transition-transform lg:translate-y-8 text-center md:text-left flex flex-col h-full">
+                    <div class="font-display font-black text-5xl sm:text-6xl lg:text-7xl text-navy mb-1 md:mb-2">50%</div>
+                    <div class="text-[10px] sm:text-xs md:text-sm font-bold text-navy/50 uppercase tracking-wider mb-4 md:mb-6">Mélyponton az index (14/100)</div>
+                    <h3 class="font-display font-bold text-xl sm:text-2xl mb-2 md:mb-4">Egyáltalán nem hirdet</h3>
+                    <p class="text-navy/80 font-medium text-sm md:text-base mt-auto">A cégek fele láthatatlan. Sokan stratégia nélkül próbálkoznak. Egy erős vizuális brand az első lépés ahhoz, hogy a marketinged tényleg megtérüljön.</p>
+                </div>
+
+                <!-- 3. Kártya (Köztes méreten 2 oszlopot tölt ki: md:col-span-2 lg:col-span-1) -->
+                <div class="bg-cyan text-navy p-6 sm:p-8 lg:p-10 rounded-3xl border-4 border-navy shadow-groovy animate-on-scroll hover:-translate-y-2 transition-transform md:col-span-2 lg:col-span-1 text-center md:text-left flex flex-col h-full">
+                    <div class="font-display font-black text-5xl sm:text-6xl lg:text-7xl text-navy mb-1 md:mb-2">9 Mrd</div>
+                    <div class="text-[10px] sm:text-xs md:text-sm font-bold text-navy/50 uppercase tracking-wider mb-4 md:mb-6">Állami Támogatás (Ft)</div>
+                    <h3 class="font-display font-bold text-xl sm:text-2xl mb-2 md:mb-4">Finanszírozott weboldalak</h3>
+                    <p class="text-navy/80 font-medium text-sm md:text-base mt-auto">A piaci rés akkora, hogy az állam komoly támogatással segíti az alapszintű weboldalak elkészítését. A hiány felismert tény — ne maradj le!</p>
+                </div>
+            </div>
+
+            <!-- Széles adat kártya -->
+            <div class="bg-azure text-navy p-6 sm:p-8 md:p-12 lg:p-14 rounded-3xl border-4 border-navy shadow-groovy animate-on-scroll flex flex-col md:flex-row items-center gap-6 md:gap-10 text-center md:text-left">
+                <div class="w-full md:w-2/3">
+                    <h3 class="font-display font-bold text-2xl sm:text-3xl lg:text-4xl mb-3 md:mb-4 text-balance">A külföldi platformok nem alszanak.</h3>
+                    <p class="text-sm sm:text-base md:text-xl font-medium text-navy/90 text-balance leading-relaxed">A hazai KKV-k sokszor reakció nélkül állnak az agresszív külföldi (pl. Temu, Shein) marketinggel szemben. Csak egy <span class="font-bold underline decoration-4 decoration-cyan text-navy">profi, hiteles és hazai vizuális jelenléttel</span> nyerheted el a tudatos vásárlók bizalmát.</p>
+                </div>
+                <div class="w-full md:w-1/3 flex justify-center mt-4 md:mt-0">
+                    <div class="w-20 h-20 sm:w-24 sm:h-24 md:w-32 md:h-32 bg-navy rounded-full flex items-center justify-center border-4 border-cyan transform md:rotate-12 shrink-0 shadow-lg">
+                        <svg class="w-10 h-10 md:w-16 md:h-16 text-cyan" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 7h8m0 0v8m0-8l-8 8-4-4-6 6"></path>
+                        </svg>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+    </section>
+
+    <!-- 6. SZEKCIÓ: KAPCSOLAT / CTA -->
+    <section id="contact" class="py-16 md:py-24 lg:py-32 px-4 sm:px-6 md:px-12 lg:px-24 bg-azure relative z-20 rounded-b-[2rem] md:rounded-b-[3rem]">
+        <div class="absolute inset-0 bg-[url('data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSIyMCIgaGVpZ2h0PSIyMCI+PGNpcmNsZSBjeD0iMiIgY3k9IjIiIHI9IjIiIGZpbGw9IiNmZmYiIG9wYWNpdHk9IjAuMSIvPjwvc3ZnPg==')] opacity-30 md:opacity-50"></div>
+        
+        <div class="w-full max-w-4xl mx-auto bg-snow p-6 sm:p-8 md:p-12 lg:p-16 rounded-3xl md:rounded-[3rem] shadow-[0.375rem_0.375rem_0px_0px_rgba(15,23,42,1)] md:shadow-[1rem_1rem_0px_0px_rgba(15,23,42,1)] border-[3px] md:border-4 border-navy relative animate-on-scroll">
+            <h2 class="font-display font-bold text-3xl sm:text-4xl md:text-5xl lg:text-6xl text-navy mb-3 md:mb-4 text-center leading-snug">Ragadd meg az előnyt!</h2>
+            <p class="text-center text-navy/80 text-sm sm:text-base md:text-xl mb-6 md:mb-12 text-balance px-2">Töltsd ki az alábbi rövid űrlapot, és kérj egy teljesen ingyenes, kötelezettségmentes konzultációt.</p>
+            
+            <form class="space-y-4 md:space-y-6" onsubmit="event.preventDefault(); alert('Köszönjük! Az üzenet sikeresen elküldve. (Ez egy bemutató oldal)');">
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-4 md:gap-6">
+                    <div>
+                        <label class="block text-navy font-bold mb-1 md:mb-2 ml-1 md:ml-2 text-sm md:text-base">Neved</label>
+                        <input type="text" required class="w-full bg-slate border-2 border-navy rounded-2xl px-4 py-3 md:px-6 md:py-4 focus:outline-none focus:ring-4 focus:ring-cyan/50 transition-all font-sans text-base">
+                    </div>
+                    <div>
+                        <label class="block text-navy font-bold mb-1 md:mb-2 ml-1 md:ml-2 text-sm md:text-base">Email címed</label>
+                        <input type="email" required class="w-full bg-slate border-2 border-navy rounded-2xl px-4 py-3 md:px-6 md:py-4 focus:outline-none focus:ring-4 focus:ring-cyan/50 transition-all font-sans text-base">
+                    </div>
+                </div>
+                <div>
+                    <label class="block text-navy font-bold mb-1 md:mb-2 ml-1 md:ml-2 text-sm md:text-base">Vállalkozásod típusa / Weboldalad</label>
+                    <input type="text" class="w-full bg-slate border-2 border-navy rounded-2xl px-4 py-3 md:px-6 md:py-4 focus:outline-none focus:ring-4 focus:ring-cyan/50 transition-all font-sans text-base">
+                </div>
+                <div>
+                    <label class="block text-navy font-bold mb-1 md:mb-2 ml-1 md:ml-2 text-sm md:text-base">Miben segíthetünk? (Röviden)</label>
+                    <textarea rows="4" required class="w-full bg-slate border-2 border-navy rounded-2xl px-4 py-3 md:px-6 md:py-4 focus:outline-none focus:ring-4 focus:ring-cyan/50 transition-all font-sans resize-none text-base"></textarea>
+                </div>
+                <div class="text-center pt-2 md:pt-4">
+                    <button type="submit" class="bg-navy text-snow px-6 py-4 md:px-12 md:py-5 rounded-full font-display font-bold text-base sm:text-lg md:text-xl shadow-groovy hover:shadow-groovy-hover hover:-translate-y-1 active:translate-y-1 active:shadow-none transition-all w-full md:w-auto">
+                        Küldés & Konzultáció Kérése
+                    </button>
+                </div>
+            </form>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="bg-navy text-snow pt-16 pb-8 md:pt-32 md:pb-12 px-5 text-center relative z-10 -mt-8 md:-mt-20 overflow-hidden w-full">
+        <h2 class="font-display font-black text-[15vw] md:text-[12vw] leading-tight md:leading-snug pb-4 md:pb-6 opacity-20 hover:opacity-100 transition-opacity duration-700 tracking-tighter text-sky selection:bg-transparent cursor-default whitespace-nowrap overflow-visible">INVIOS</h2>
+        <div class="mt-8 md:mt-12 text-xs md:text-sm opacity-60 flex flex-col md:flex-row justify-center items-center gap-3 md:gap-12">
+            <div class="flex gap-4 justify-center mt-2 md:mt-0">
+                <a href="#" onclick="openModal('modal-adatvedelem'); return false;" class="hover:text-azure transition-colors py-2 md:py-0">Adatvédelmi tájékoztató</a>
+                <a href="#" onclick="openModal('modal-aszf'); return false;" class="hover:text-azure transition-colors py-2 md:py-0">ÁSZF</a>
+            </div>
+        </div>
+    </footer>
+
+    <!-- MODALOK (Popup Ablakok) -->
+    <!-- Adatvédelmi Tájékoztató Modal -->
+    <div id="modal-adatvedelem" class="fixed inset-0 z-[100] hidden items-center justify-center p-4 sm:p-6 opacity-0 transition-opacity duration-300">
+        <div class="absolute inset-0 bg-navy/80 backdrop-blur-sm" onclick="closeModal('modal-adatvedelem')"></div>
+        <div class="bg-snow text-navy p-6 md:p-10 rounded-[2rem] w-full max-w-3xl max-h-[90vh] overflow-y-auto relative z-10 border-4 border-navy shadow-groovy transform scale-95 transition-transform duration-300">
+            <button onclick="closeModal('modal-adatvedelem')" class="absolute top-4 right-4 md:top-6 md:right-6 w-10 h-10 bg-slate rounded-full flex items-center justify-center border-2 border-navy hover:bg-azure hover:text-snow transition-colors">
+                <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"></path></svg>
+            </button>
+            <h2 class="font-display font-bold text-3xl md:text-4xl mb-6 pr-12">Adatvédelmi tájékoztató</h2>
+            <div class="space-y-4 text-sm md:text-base font-sans leading-relaxed text-navy/80">
+                <p><strong>1. Adatkezelő adatai és Bevezetés</strong><br>Adatkezelő: <strong>Tyukodi Zsombor egyéni vállalkozó</strong>.<br>A jelen adatvédelmi tájékoztató célja, hogy bemutassa, hogyan kezeljük a weboldal látogatóinak személyes adatait, tiszteletben tartva a magánszférát és a GDPR előírásait.</p>
+                <p><strong>2. Kezelt adatok köre</strong><br>A kapcsolatfelvételi űrlap kitöltése során megadott név, e-mail cím és a megadott egyéb üzleti információk. Ezeket az adatokat bizalmasan kezeljük, és harmadik félnek nem adjuk ki.</p>
+                <p><strong>3. Adatkezelés célja</strong><br>Az adatok kezelése kizárólag a kapcsolatfelvétel, ajánlatadás és a konzultáció lebonyolítása céljából történik.</p>
+                <p><strong>4. Jogorvoslat és törlés</strong><br>Bármikor kérheted adataid helyesbítését vagy teljes törlését az ügyfélszolgálati e-mail címünkön keresztül.</p>
+                <p class="text-xs font-bold pt-4">Utolsó frissítés: 2026. Június.</p>
+            </div>
+        </div>
+    </div>
+
+    <!-- ÁSZF Modal -->
+    <div id="modal-aszf" class="fixed inset-0 z-[100] hidden items-center justify-center p-4 sm:p-6 opacity-0 transition-opacity duration-300">
+        <div class="absolute inset-0 bg-navy/80 backdrop-blur-sm" onclick="closeModal('modal-aszf')"></div>
+        <div class="bg-snow text-navy p-6 md:p-10 rounded-[2rem] w-full max-w-3xl max-h-[90vh] overflow-y-auto relative z-10 border-4 border-navy shadow-groovy transform scale-95 transition-transform duration-300">
+            <button onclick="closeModal('modal-aszf')" class="absolute top-4 right-4 md:top-6 md:right-6 w-10 h-10 bg-slate rounded-full flex items-center justify-center border-2 border-navy hover:bg-azure hover:text-snow transition-colors">
+                <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"></path></svg>
+            </button>
+            <h2 class="font-display font-bold text-3xl md:text-4xl mb-6 pr-12">Általános Szerződési Feltételek</h2>
+            <div class="space-y-4 text-sm md:text-base font-sans leading-relaxed text-navy/80">
+                <p><strong>1. A szolgáltató adatai</strong><br>Szolgáltató: <strong>Tyukodi Zsombor egyéni vállalkozó</strong> (márkanév: Invios)<br>Székhely: [Ide írd a pontos címed]<br>Adószám: [Ide írd az adószámod]<br>Nyilvántartási szám: [Ide írd az EV nyilvántartási számod]</p>
+                <p><strong>2. A szolgáltatás tárgya</strong><br>Vizuális arculattervezés, logótervezés, social media sablonok és brand guide dokumentumok készítése egyedi megállapodás alapján.</p>
+                <p><strong>3. Szerzői jogok</strong><br>Az elkészült vizuális elemek teljes körű felhasználási joga a díj kiegyenlítése után száll át a megrendelőre. A vázlatok és az elutasított koncepciók a szolgáltató tulajdonában maradnak.</p>
+                <p><strong>4. Fizetési feltételek</strong><br>A projektek megkezdése előtt X% előleg bekérése történhet, a fennmaradó összeget a projekt átadásakor állítjuk ki számla ellenében.</p>
+                <p class="text-xs font-bold pt-4">Hatályos: 2026. Június 1-től visszavonásig.</p>
+            </div>
+        </div>
+    </div>
+
+    <!-- Animációk és Interakciók -->
+    <script>
+        // Modal vezérlő funkciók
+        function openModal(id) {
+            const modal = document.getElementById(id);
+            modal.classList.remove('hidden');
+            modal.classList.add('flex');
+            
+            // Pici késleltetés, hogy a CSS tranzíció lefusson a display:flex után
+            setTimeout(() => {
+                modal.classList.remove('opacity-0');
+                modal.querySelector('div:nth-child(2)').classList.remove('scale-95');
+                modal.querySelector('div:nth-child(2)').classList.add('scale-100');
+            }, 10);
+            
+            document.body.style.overflow = 'hidden'; // Háttér görgetésének tiltása
+        }
+
+        function closeModal(id) {
+            const modal = document.getElementById(id);
+            modal.classList.add('opacity-0');
+            modal.querySelector('div:nth-child(2)').classList.remove('scale-100');
+            modal.querySelector('div:nth-child(2)').classList.add('scale-95');
+            
+            setTimeout(() => {
+                modal.classList.add('hidden');
+                modal.classList.remove('flex');
+                document.body.style.overflow = ''; // Háttér görgetésének visszaállítása
+            }, 300); // 300ms a CSS tranzíció ideje
+        }
+
+        document.addEventListener('DOMContentLoaded', () => {
+
+            // --- LOGÓ GÖRDÜLŐ ANIMÁCIÓJA ---
+            const dynamicLogo = document.getElementById('dynamic-logo');
+            const dynamicText = document.getElementById('dynamic-text');
+            let logoScrollTrigger;
+            let lastWindowWidth = window.innerWidth;
+
+            function setupLogoAnimation() {
+                if (logoScrollTrigger) {
+                    logoScrollTrigger.animation.progress(1);
+                    logoScrollTrigger.kill();
+                }
+
+                gsap.set([dynamicLogo, dynamicText], { clearProps: "all" });
+
+                dynamicLogo.getBoundingClientRect(); 
+
+                const rect = dynamicLogo.getBoundingClientRect();
+                const viewportWidth = window.innerWidth;
+                const viewportHeight = window.innerHeight;
+
+                // Visszaállított logó méretezés asztalin: 360px (az eredeti 450px 20%-kal csökkentett verziója)
+                const maxLogoWidth = viewportWidth < 768 ? Math.min(260, viewportWidth * 0.8) : 360;
+                const targetScale = maxLogoWidth / rect.width;
+
+                const targetX = (viewportWidth / 2) - (rect.left + rect.width / 2);
+                
+                const heroCenterY = viewportWidth < 768 ? viewportHeight * 0.22 : viewportHeight * 0.28; 
+                const targetY = heroCenterY - (rect.top + rect.height / 2);
+
+                const startLetterSpacing = viewportWidth < 768 ? "4px" : "12px";
+
+                // Visszaállított görgetési távolság az eredetire
+                const endScroll = viewportWidth < 768 ? "200px top" : "300px top";
+
+                logoScrollTrigger = ScrollTrigger.create({
+                    trigger: "body",
+                    start: "top top",
+                    end: endScroll,
+                    scrub: 0.5, 
+                    animation: gsap.timeline()
+                        .fromTo(dynamicLogo, 
+                            { x: targetX, y: targetY, scale: targetScale, transformOrigin: "center center" },
+                            { x: 0, y: 0, scale: 1, ease: "power2.out" },
+                            0
+                        )
+                        .fromTo(dynamicText,
+                            { letterSpacing: startLetterSpacing },
+                            { letterSpacing: "-2px", ease: "power2.out" },
+                            0
+                        )
+                });
+            }
+
+            document.fonts.ready.then(() => {
+                setupLogoAnimation();
+            });
+
+            let resizeTimer;
+            window.addEventListener('resize', () => {
+                if (Math.abs(window.innerWidth - lastWindowWidth) > 10) {
+                    lastWindowWidth = window.innerWidth;
+                    clearTimeout(resizeTimer);
+                    resizeTimer = setTimeout(() => {
+                        setupLogoAnimation();
+                    }, 250);
+                }
+            });
+
+            // --- GSAP SCROLL ANIMÁCIÓK ---
+            gsap.registerPlugin(ScrollTrigger);
+
+            const animatedElements = document.querySelectorAll('.animate-on-scroll');
+            animatedElements.forEach(el => {
+                gsap.fromTo(el, 
+                    { y: "5vh", opacity: 0 }, // Animáció y kezdőértéke px helyett vh-ban
+                    { 
+                        y: 0, 
+                        opacity: 1, 
+                        duration: 0.8, 
+                        ease: "power3.out",
+                        scrollTrigger: {
+                            trigger: el,
+                            start: "top 88%", 
+                            toggleActions: "play none none reverse"
+                        }
+                    }
+                );
+            });
+        });
+    </script>
+</body>
+</html>
+
+
+
+
+
+
+
+
         }
     </script>
 
