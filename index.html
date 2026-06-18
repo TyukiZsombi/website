@@ -51,7 +51,7 @@
             max-width: 100%;
         }
 
-        /* Dithering Zajos Overlay - Mobilon csökkentett átlátszóság a jobb olvashatóságért */
+        /* Dithering Zajos Overlay */
         .noise-overlay {
             position: fixed;
             inset: 0;
@@ -111,7 +111,7 @@
         .glass-groovy-card {
             background: rgba(248, 250, 252, 0.7);
             backdrop-filter: blur(12px);
-            -webkit-backdrop-filter: blur(12px); /* Safari támogatás */
+            -webkit-backdrop-filter: blur(12px);
             border: 2px solid #0F172A;
             border-radius: 1.5rem;
             transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
@@ -129,15 +129,14 @@
 
         /* Töréspontokra optimalizált tipográfia */
         .responsive-slogan {
-            font-size: clamp(1.8rem, 6vw, 4rem); /* Jobb skálázás mobilon */
-            line-height: 1.15;
-            padding-bottom: 0.15em;
+            font-size: clamp(1.8rem, 6vw, 4rem); 
         }
 
-        /* Globális védelem a betűk aljának levágása ellen */
+        /* Globális védelem a betűk aljának és ékezeteinek levágása ellen (Javítva) */
         .font-display, h1, h2, h3, h4, h5, h6, .marquee-content {
-            padding-bottom: 0.15em;
-            line-height: 1.2;
+            padding-top: 0.1em;
+            padding-bottom: 0.2em;
+            line-height: 1.35;
         }
     </style>
 </head>
@@ -148,9 +147,10 @@
 
     <!-- Navigáció -->
     <nav class="fixed top-0 w-full z-50 px-4 md:px-8 py-3 md:py-5 flex justify-between items-center mix-blend-difference text-snow" id="main-nav">
-        <!-- A mozgó, dinamikus logó -->
-        <a href="#" id="dynamic-logo" class="origin-center relative w-24 sm:w-28 md:w-32 h-8 md:h-10 flex items-center justify-center drop-shadow-sm text-snow">
-            <svg viewBox="0 0 200 60" class="w-full h-full overflow-visible">
+        <!-- A mozgó, dinamikus logó (20%-kal kisebb alapállapot: w-[76px] mobilon, w-[102px] asztalin) -->
+        <a href="#" id="dynamic-logo" class="origin-center relative w-[76px] sm:w-[90px] md:w-[102px] h-6 md:h-8 flex items-center justify-center drop-shadow-sm text-snow">
+            <!-- viewBox megnövelve 80 magasságra a levágások elkerüléséért -->
+            <svg viewBox="0 0 200 80" class="w-full h-full overflow-visible">
                 <text x="50%" y="54%" dominant-baseline="middle" text-anchor="middle" font-family="'Syne', sans-serif" font-weight="900" font-size="54" fill="currentColor" id="dynamic-text">INVIOS</text>
             </svg>
         </a>
@@ -159,7 +159,7 @@
         </div>
     </nav>
 
-    <!-- 1. SZEKCIÓ: HERO -->
+    <!-- 1. SZEKCIÓ: HERO (Lefelé mutató nyíl eltávolítva) -->
     <section class="relative w-full min-h-[100svh] flex flex-col justify-center items-center overflow-hidden cool-gradient-bg">
         
         <div class="relative z-20 w-full max-w-5xl mx-auto flex flex-col items-center px-5 md:px-6 text-center mt-32 md:mt-48 lg:mt-56">
@@ -172,19 +172,13 @@
                 </a>
             </div>
         </div>
-
-        <div class="absolute bottom-8 left-1/2 -translate-x-1/2 z-20 animate-bounce">
-            <svg class="w-8 h-8 text-navy opacity-70" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 14l-7 7m0 0l-7-7m7 7V3"></path>
-            </svg>
-        </div>
     </section>
 
     <!-- 2. SZEKCIÓ: RÓLUNK -->
     <section id="about" class="py-16 md:py-24 lg:py-32 px-5 md:px-12 lg:px-24 bg-snow relative z-20 rounded-t-[2rem] md:rounded-t-[3rem] -mt-8 md:-mt-10 shadow-2xl">
         <div class="max-w-7xl mx-auto grid grid-cols-1 lg:grid-cols-2 gap-10 md:gap-16 items-center">
             <div class="space-y-6 md:space-y-8 animate-on-scroll text-center lg:text-left">
-                <h2 class="font-display font-bold text-4xl sm:text-5xl lg:text-7xl text-navy leading-tight pb-2">
+                <h2 class="font-display font-bold text-4xl sm:text-5xl lg:text-7xl text-navy leading-tight">
                     Több, mint <br class="hidden lg:block"/><span class="text-azure">esztétika.</span> Hitelesség.
                 </h2>
                 <p class="text-lg sm:text-xl md:text-2xl text-navy/80 font-light leading-relaxed text-balance">
@@ -207,7 +201,7 @@
     <!-- Marquee Elválasztó -->
     <div class="w-full overflow-hidden relative z-30 bg-snow">
         <div class="bg-navy text-sky py-4 md:py-6 marquee-container border-y-4 border-navy transform -rotate-2 md:-rotate-1 scale-105 shadow-xl w-full">
-            <div class="marquee-content font-display font-bold text-xl md:text-3xl lg:text-4xl uppercase tracking-widest pb-1 md:pb-2 leading-tight flex items-center gap-4">
+            <div class="marquee-content font-display font-bold text-xl md:text-3xl lg:text-4xl uppercase tracking-widest flex items-center gap-4">
                 <span>LOGÓ TERVEZÉS • SZÍNPALETTA • TIPOGRÁFIA • BRAND GUIDE • SOCIAL MEDIA • VIZUÁLIS MODERNIZÁCIÓ •</span>
                 <span>LOGÓ TERVEZÉS • SZÍNPALETTA • TIPOGRÁFIA • BRAND GUIDE • SOCIAL MEDIA • VIZUÁLIS MODERNIZÁCIÓ •</span>
             </div>
@@ -218,8 +212,8 @@
     <section id="services" class="py-16 md:py-24 lg:py-32 px-5 md:px-12 lg:px-24 bg-slate relative z-20">
         <div class="max-w-7xl mx-auto">
             <div class="text-center mb-12 md:mb-20 animate-on-scroll">
-                <h2 class="font-display font-bold text-4xl md:text-6xl lg:text-8xl text-navy mb-4 md:mb-6">Miben segítünk?</h2>
-                <p class="text-base sm:text-lg md:text-2xl text-navy/70 max-w-2xl mx-auto px-4 text-balance">Minden, amire szükséged van egy egységes, figyelemfelkeltő online jelenléthez.</p>
+                <h2 class="font-display font-bold text-4xl md:text-6xl lg:text-8xl text-navy">Miben segítünk?</h2>
+                <p class="text-base sm:text-lg md:text-2xl text-navy/70 max-w-2xl mx-auto px-4 text-balance mt-4 md:mt-6">Minden, amire szükséged van egy egységes, figyelemfelkeltő online jelenléthez.</p>
             </div>
 
             <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-5 md:gap-8">
@@ -327,8 +321,8 @@
     <section id="market-data" class="py-16 md:py-24 lg:py-32 px-5 md:px-6 overflow-hidden bg-navy text-snow relative z-20">
         <div class="max-w-7xl mx-auto">
             <div class="text-center mb-12 md:mb-20 animate-on-scroll">
-                <h2 class="font-display font-bold text-4xl md:text-5xl lg:text-7xl text-sky mb-4 md:mb-6">Az adatok nem hazudnak.</h2>
-                <p class="text-base sm:text-lg md:text-2xl text-snow/80 max-w-3xl mx-auto text-balance">A hazai KKV szektor digitális lemaradásban van. Ami rossz hír a piacnak, az <span class="text-cyan font-bold block sm:inline mt-2 sm:mt-0">hatalmas lehetőség neked</span>, hogy egy profi arculattal azonnal kitűnj.</p>
+                <h2 class="font-display font-bold text-4xl md:text-5xl lg:text-7xl text-sky">Az adatok nem hazudnak.</h2>
+                <p class="text-base sm:text-lg md:text-2xl text-snow/80 max-w-3xl mx-auto text-balance mt-4 md:mt-6">A hazai KKV szektor digitális lemaradásban van. Ami rossz hír a piacnak, az <span class="text-cyan font-bold block sm:inline mt-2 sm:mt-0">hatalmas lehetőség neked</span>, hogy egy profi arculattal azonnal kitűnj.</p>
             </div>
             
             <div class="grid grid-cols-1 md:grid-cols-3 gap-5 md:gap-8 mb-8 md:mb-12">
@@ -374,7 +368,6 @@
 
     <!-- 6. SZEKCIÓ: KAPCSOLAT / CTA -->
     <section id="contact" class="py-16 md:py-24 lg:py-32 px-4 sm:px-6 md:px-12 lg:px-24 bg-azure relative z-20 rounded-b-[2rem] md:rounded-b-[3rem]">
-        <!-- Háttér textúra mobilon halványabb -->
         <div class="absolute inset-0 bg-[url('data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSIyMCIgaGVpZ2h0PSIyMCI+PGNpcmNsZSBjeD0iMiIgY3k9IjIiIHI9IjIiIGZpbGw9IiNmZmYiIG9wYWNpdHk9IjAuMSIvPjwvc3ZnPg==')] opacity-30 md:opacity-50"></div>
         
         <div class="max-w-4xl mx-auto bg-snow p-6 sm:p-8 md:p-12 lg:p-16 rounded-3xl md:rounded-[3rem] shadow-[6px_6px_0px_0px_rgba(15,23,42,1)] md:shadow-[16px_16px_0px_0px_rgba(15,23,42,1)] border-[3px] md:border-4 border-navy relative animate-on-scroll mx-1 sm:mx-auto">
@@ -385,7 +378,6 @@
                 <div class="grid grid-cols-1 md:grid-cols-2 gap-4 md:gap-6">
                     <div>
                         <label class="block text-navy font-bold mb-1 md:mb-2 ml-1 md:ml-2 text-sm md:text-base">Neved</label>
-                        <!-- FONTOS: text-base használata (min 16px) meggátolja az iOS Safari automatikus zoomolását -->
                         <input type="text" required class="w-full bg-slate border-2 border-navy rounded-2xl px-4 py-3 md:px-6 md:py-4 focus:outline-none focus:ring-4 focus:ring-cyan/50 transition-all font-sans text-base">
                     </div>
                     <div>
@@ -412,7 +404,6 @@
 
     <!-- Footer -->
     <footer class="bg-navy text-snow pt-16 pb-8 md:pt-32 md:pb-12 px-5 text-center relative z-10 -mt-8 md:-mt-20 overflow-hidden w-full">
-        <!-- A "whitespace-nowrap" és a szűkebb letter-spacing segít, hogy a nagy felirat ne törjön mobilon -->
         <h2 class="font-display font-black text-[15vw] md:text-[12vw] leading-none md:leading-tight pb-2 opacity-20 hover:opacity-100 transition-opacity duration-700 tracking-tighter text-sky selection:bg-transparent cursor-default whitespace-nowrap overflow-hidden">INVIOS</h2>
         <div class="mt-8 md:mt-12 text-xs md:text-sm opacity-60 flex flex-col md:flex-row justify-center items-center gap-3 md:gap-12">
             <p>© 2026 Invios Kreatív Ügynökség.</p>
@@ -427,7 +418,7 @@
     <script>
         document.addEventListener('DOMContentLoaded', () => {
 
-            // --- LOGÓ GÖRDÜLŐ ANIMÁCIÓJA (MOBIL BIZTOS VERZIÓ) ---
+            // --- LOGÓ GÖRDÜLŐ ANIMÁCIÓJA ---
             const dynamicLogo = document.getElementById('dynamic-logo');
             const dynamicText = document.getElementById('dynamic-text');
             let logoScrollTrigger;
@@ -441,25 +432,22 @@
 
                 gsap.set([dynamicLogo, dynamicText], { clearProps: "all" });
 
-                dynamicLogo.getBoundingClientRect(); // Reflow kikényszerítése
+                dynamicLogo.getBoundingClientRect(); 
 
                 const rect = dynamicLogo.getBoundingClientRect();
                 const viewportWidth = window.innerWidth;
                 const viewportHeight = window.innerHeight;
 
-                // TÖKÉLETES RESPONSIVE MÉRETEZÉS
                 const maxLogoWidth = viewportWidth < 768 ? Math.min(260, viewportWidth * 0.8) : 450;
                 const targetScale = maxLogoWidth / rect.width;
 
                 const targetX = (viewportWidth / 2) - (rect.left + rect.width / 2);
                 
-                // Mobilon magasabbra pozícionáljuk, hogy ne lógjon a szövegre
                 const heroCenterY = viewportWidth < 768 ? viewportHeight * 0.22 : viewportHeight * 0.28; 
                 const targetY = heroCenterY - (rect.top + rect.height / 2);
 
                 const startLetterSpacing = viewportWidth < 768 ? "4px" : "15px";
 
-                // Végpont beállítása mobilon rövidebb, hogy hamarabb visszatérjen a navba
                 const endScroll = viewportWidth < 768 ? "200px top" : "300px top";
 
                 logoScrollTrigger = ScrollTrigger.create({
@@ -487,8 +475,6 @@
 
             let resizeTimer;
             window.addEventListener('resize', () => {
-                // Csak akkor rajzoljuk újra, ha a szélesség ténylegesen megváltozott
-                // (ez védi az elrendezést mobilon a fel-le gördítéskori menüsor-ugrálástól)
                 if (Math.abs(window.innerWidth - lastWindowWidth) > 10) {
                     lastWindowWidth = window.innerWidth;
                     clearTimeout(resizeTimer);
@@ -512,7 +498,7 @@
                         ease: "power3.out",
                         scrollTrigger: {
                             trigger: el,
-                            start: "top 88%", // Mobilon hamarabb elkezdődik az animáció, amint a képernyőbe ér
+                            start: "top 88%", 
                             toggleActions: "play none none reverse"
                         }
                     }
@@ -522,3 +508,4 @@
     </script>
 </body>
 </html>
+
